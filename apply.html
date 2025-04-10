@@ -20,8 +20,8 @@
     <main>
         <div>
             <h1>Apply for <span id="applyingForJob">Senior Software Engineer</span></h1>
-            <p>at <span id="applyingForCompany">Tech Innovations Inc.</span></p>
-            
+            <p>at <span id="applyingForCompany">Huzztml</span></p>
+            <form id="applicationForm">
                 <div>
                     <div>
                         <label for="fullName">Full Name *</label>
@@ -68,14 +68,5 @@
         </div>
     </main>
 
-    <script>
-        // Basic form validation to show browser's built-in validation popups
-        document.getElementById('applicationForm').addEventListener('submit', function(event) {
-            if (!this.checkValidity()) {
-                event.preventDefault(); // Prevent form submission
-                alert('Please fill out all required fields correctly.Ensure email is correct and that you have uploaded a document'); // Optional custom alert
-            }
-        });
-    </script>
 </body>
 </html>
