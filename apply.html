@@ -5,72 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply for Job - Huzztml</title>
 </head>
-<body class="bg-gray-50">
-    <nav class="bg-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-2">
-                <i class="fas fa-briefcase text-blue-600 text-2xl"></i>
-                <h1 class="text-2xl font-bold text-blue-600">Huzztml</h1>
+<body>
+    <nav>
+        <div>
+            <a href="index.html">
+                <h1>Home</h1>
             </a>
-            <a href="job-description.html" class="text-blue-600 hover:text-blue-800">
-                <i class="fas fa-arrow-left mr-2"></i> Back to Job
+            <a href="jobs.html">
+                Back to Jobs
             </a>
         </div>
     </nav>
 
-    <main class="max-w-3xl mx-auto px-4 py-8">
-        <div class="bg-white rounded-xl shadow-md p-8">
-            <h1 class="text-2xl font-bold mb-2">Apply for <span id="applyingForJob">Senior Software Engineer</span></h1>
-            <p class="text-gray-600 mb-6">at <span id="applyingForCompany">Huzztml</span></p>
+    <main>
+        <div>
+            <h1>Apply for <span id="applyingForJob">Senior Software Engineer</span></h1>
+            <p>at <span id="applyingForCompany">Tech Innovations Inc.</span></p>
             
-            <form id="applicationForm" class="space-y-6" action="confirmation.html" method="GET">
-                <div class="grid md:grid-cols-2 gap-6">
+                <div>
                     <div>
-                        <label for="fullName" class="block text-gray-700 mb-2 font-medium">Full Name *</label>
-                        <input type="text" id="fullName" name="fullName" required
-                               class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
                     </div>
                     <div>
-                        <label for="email" class="block text-gray-700 mb-2 font-medium">Email *</label>
-                        <input type="email" id="email" name="email" required
-                               class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div>
-                        <label for="phone" class="block text-gray-700 mb-2 font-medium">Phone</label>
-                        <input type="tel" id="phone" name="phone"
-                               class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
                     </div>
                     <div>
-                        <label for="location" class="block text-gray-700 mb-2 font-medium">Location</label>
-                        <input type="text" id="location" name="location"
-                               class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location">
                     </div>
                 </div>
                 
                 <div>
-                    <label for="resume" class="block text-gray-700 mb-2 font-medium">Resume *</label>
-                    <div class="flex items-center justify-center w-full">
-                        <label class="flex flex-col w-full border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-50">
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6 px-4">
-                                <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-3"></i>
-                                <p class="text-sm text-gray-500">Drag & drop your resume here, or click to browse</p>
-                                <p class="text-xs text-gray-400 mt-1">PDF, DOC, DOCX (Max. 5MB)</p>
+                    <label for="resume">Resume *</label>
+                    <div>
+                        <label>
+                            <div>
+                                <p>Drag & drop your resume here, or click to browse</p>
+                                <p>PDF, DOC, DOCX (Max. 5MB)</p>
                             </div>
-                            <input type="file" id="resume" name="resume" required class="hidden" accept=".pdf,.doc,.docx">
+                            <input type="file" id="resume" name="resume" required accept=".pdf,.doc,.docx">
                         </label>
                     </div>
                 </div>
                 
                 <div>
-                    <label for="coverLetter" class="block text-gray-700 mb-2 font-medium">Cover Letter</label>
-                    <textarea id="coverLetter" name="coverLetter" rows="5"
-                              class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                              placeholder="Tell us why you'd be a great fit for this position..."></textarea>
+                    <label for="coverLetter">Cover Letter</label>
+                    <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Tell us why you'd be a great fit for this position..."></textarea>
                 </div>
                 
-                <div class="pt-4">
-                    <button type="submit" 
-                            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition">
+                <div>
+                    <button type="submit">
                         Submit Application
                     </button>
                 </div>
@@ -78,5 +68,14 @@
         </div>
     </main>
 
+    <script>
+        // Basic form validation to show browser's built-in validation popups
+        document.getElementById('applicationForm').addEventListener('submit', function(event) {
+            if (!this.checkValidity()) {
+                event.preventDefault(); // Prevent form submission
+                alert('Please fill out all required fields correctly.Ensure email is correct and that you have uploaded a document'); // Optional custom alert
+            }
+        });
+    </script>
 </body>
 </html>
