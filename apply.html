@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply for Job - Huzztml</title>
+    <link rel="stylesheet" href="applystyle.css">
 </head>
 <body>
     <nav>
@@ -43,14 +44,10 @@
                 
                 <div>
                     <label for="resume">Resume *</label>
-                    <div>
-                        <label>
-                            <div>
-                                <p>Drag & drop your resume here, or click to browse</p>
-                                <p>PDF, DOC, DOCX (Max. 5MB)</p>
-                            </div>
-                            <input type="file" id="resume" name="resume" required accept=".pdf,.doc,.docx">
-                        </label>
+                    <div class="file-upload-area">
+                        <input type="file" id="resume" name="resume" required accept=".pdf,.doc,.docx">
+                        <p>Drag & drop your resume here, or click to upload</p>
+                        <p>PDF, DOC, DOCX (Max. 5MB)</p>
                     </div>
                 </div>
                 
