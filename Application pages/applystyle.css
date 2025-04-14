@@ -5,7 +5,7 @@ body {
     background-color: #f3f4f6; /* Slightly lighter background for better contrast */
     color: #111827;
     line-height: 1.6;
-    background-image: url('applybackground.jpeg');
+    background-image: url('../images/applybackground.jpeg'); /* Updated path */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -260,6 +260,9 @@ label {
     background-color: #f9f9f9;
     transition: border-color 0.3s, background-color 0.3s;
     cursor: pointer;
+    background-image: url('../images/upload-icon.png'); /* Example for file upload icon */
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #dropZone:hover {

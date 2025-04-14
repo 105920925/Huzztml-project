@@ -11,7 +11,7 @@ body {
 /* Header styles */
 header {
     text-align: center;
-    background-image: url('interviewpic.jpg');
+    background-image: url('images/interviewpic.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -229,12 +229,14 @@ footer .contact-email {
     border: 2px solid #004080;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
+    background-image: url('images/softwaredev.jpeg'); /* Update image path */
 }
 
 /* Specific style for Cyber Security Analyst image */
 .job-box img[alt="Cyber Security Analyst"] {
     width: 120px; /* Reduce width */
     height: 120px; /* Reduce height */
+    background-image: url('images/cybersec.png'); /* Update image path */
 }
 
 /* Specific style for Software Developer image */
