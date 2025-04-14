@@ -11,9 +11,21 @@ body {
 /* Header styles */
 header {
     text-align: center;
-    background-color: #004080;
+    background-image: url('interviewpic.jpg');
+    background-size: cover;
+    background-position: center;
     color: white;
-    padding: 20px 10px;
+    padding: 60px 10px;
+    position: relative;
+}
+
+.header-content {
+    background-color: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background for better readability */
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 header h1 {
@@ -26,18 +38,25 @@ header p {
     font-size: 1.2em;
 }
 
+/* Header image styles */
 header img {
     width: 100%;
     height: auto;
     max-height: 500px;
     object-fit: cover;
     display: block;
+    border-radius: 15px;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Company description and logo styles */
 header div img {
     width: 150px;
     height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Retain shadow for better appearance */
+    border: none; /* Remove yellow border */
 }
 
 header div p {
