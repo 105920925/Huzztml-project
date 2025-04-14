@@ -208,15 +208,17 @@ footer .contact-email {
     margin-top: 20px;
 }
 
+/* Featured job box styles */
 .job-box {
     flex: 1;
     max-width: 45%;
     margin: 10px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Increase padding for better spacing */
+    background-color: white; /* Solid white background */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow for better pop-out effect */
     text-align: center;
+    border: 1px solid #ddd; /* Add a light border for consistency */
 }
 
 .job-box img {
