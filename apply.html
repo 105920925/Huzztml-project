@@ -13,17 +13,24 @@
                 <h1>Home</h1>
             </a>
             <a href="jobs.html">
-                Back to Jobs
+                <span>Back to Jobs</span>
             </a>
         </div>
     </nav>
 
     <main>
         <div>
-            <h1>Apply for <span id="applyingForJob">Senior Software Engineer</span></h1>
-            <p>at <span id="applyingForCompany">Huzztml</span></p>
+            <h1>Apply for a Job</h1>
             <form id="applicationForm">
                 <div>
+                    <div>
+                        <label for="jobTitle">Job Title *</label>
+                        <select id="jobTitle" name="jobTitle" required>
+                            <option value="" disabled selected>Select a job</option>
+                            <option value="Software Developer">Software Developer</option>
+                            <option value="Cyber Security Analyst">Cyber Security Analyst</option>
+                        </select>
+                    </div>
                     <div>
                         <label for="fullName">Full Name *</label>
                         <input type="text" id="fullName" name="fullName" required>
@@ -54,6 +61,29 @@
                 <div>
                     <label for="coverLetter">Cover Letter</label>
                     <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Tell us why you'd be a great fit for this position..."></textarea>
+                </div>
+                
+                <div>
+                    <div>
+                        <label for="education">Education *</label>
+                        <textarea id="education" name="education" rows="3" placeholder="Enter your education details..." required></textarea>
+                    </div>
+                    <div>
+                        <label for="experience">Experience *</label>
+                        <textarea id="experience" name="experience" rows="3" placeholder="Enter your work experience..." required></textarea>
+                    </div>
+                    <div>
+                        <label for="skills">Skills *</label>
+                        <textarea id="skills" name="skills" rows="3" placeholder="List your relevant skills..." required></textarea>
+                    </div>
+                    <div>
+                        <label for="portfolio">Portfolio/Website</label>
+                        <input type="url" id="portfolio" name="portfolio" placeholder="Enter a link to your portfolio or website">
+                    </div>
+                    <div>
+                        <label for="linkedin">LinkedIn Profile</label>
+                        <input type="url" id="linkedin" name="linkedin" placeholder="Enter your LinkedIn profile URL">
+                    </div>
                 </div>
                 
                 <div>
