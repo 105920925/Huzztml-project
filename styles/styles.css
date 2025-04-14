@@ -19,7 +19,7 @@ body {
   line-height: 1.6; /* Line spacing for readability */
   margin: 0;
   padding: 0;
-  background-image: url('images/applybackground.jpeg'); /* Background image for the body */
+  background-image: url('../images/applybackground.jpeg'); /* Background image for the body */
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* Keeps the background fixed during scroll */
@@ -31,7 +31,7 @@ header {
   color: white; /* Text color */
   padding: 60px 10px; /* Padding for spacing */
   text-align: center; /* Center align header text */
-  background-image: url('images/interviewpic.jpg'); /* Image background for header */
+  background-image: url('../images/interviewpic.jpg'); /* Image background for header */
   background-size: cover;
   background-position: center;
 }
