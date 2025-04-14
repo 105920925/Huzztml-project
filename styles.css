@@ -132,6 +132,20 @@ button:hover {
     background-color: #003366;
 }
 
+/* Button styles for "Read More" */
+.job-box button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.job-box button:hover {
+    background-color: #004080;
+}
+
 /* Footer styles */
 footer {
     text-align: center;
