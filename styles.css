@@ -122,3 +122,18 @@ footer {
     margin-top: 20px;
     font-size: 0.9em;
 }
+
+footer a {
+    color: white;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+/* Contact email styles */
+footer .contact-email {
+    color: #ffcc00;
+    font-weight: bold;
+}
