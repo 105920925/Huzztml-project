@@ -78,6 +78,7 @@ header {
 /* Header text container */
 .header-text {
     flex: 1; /* Take remaining space */
+    text-align: center;
 }
 
 /* Main heading (h1) style using CSS shorthand font property */
@@ -237,15 +238,4 @@ footer p {
         flex-direction: column;
         gap: 0.5rem;
     }
-}
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.nav-logo img {
-    height: 50px; /* Adjust based on your logo size */
-    margin-right: 20px;
 }
