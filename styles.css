@@ -156,3 +156,74 @@ footer .contact-email {
     color: #ffcc00;
     font-weight: bold;
 }
+
+/* Logo container styles */
+.logo-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.logo-container img {
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+}
+
+.logo-container p {
+    margin-top: 10px;
+    font-size: 1.1em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Intro text styles */
+.intro-text {
+    margin-left: 20px;
+}
+
+/* Featured jobs styles */
+.featured-jobs {
+    margin-top: 20px;
+}
+
+.job-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.job-box {
+    flex: 1;
+    max-width: 45%;
+    margin: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.job-box img {
+    width: 150px; /* Set fixed width */
+    height: 150px; /* Set fixed height */
+    object-fit: cover; /* Ensure the image fits within the dimensions */
+    border-radius: 10px;
+    border: 2px solid #004080;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+/* Specific style for Cyber Security Analyst image */
+.job-box img[alt="Cyber Security Analyst"] {
+    width: 120px; /* Reduce width */
+    height: 120px; /* Reduce height */
+}
+
+/* Specific style for Software Developer image */
+.job-box img[alt="Software Developer"] {
+    width: 120px; /* Match width with Cyber Security Analyst */
+    height: 120px; /* Match height with Cyber Security Analyst */
+    object-fit: cover; /* Ensure the image fits within the dimensions */
+}
