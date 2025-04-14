@@ -47,11 +47,3 @@ This repository contains the full source code for the website, including HTML, C
 - **PHP**: Used for job form back-end logic (for the "Apply" page, if implemented).
   
 ---
-
-## Installation
-
-To get a copy of this project running locally, follow these steps:
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/huzztml-recruitment-website.git
