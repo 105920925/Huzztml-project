@@ -43,7 +43,5 @@ This repository contains the full source code for the website, including HTML, C
 
 - **HTML5**: The basic structure and content of the website.
 - **CSS3**: Styling for a visually appealing and responsive design.
-- **JavaScript**: Optional, for any future interactivity or form validation.
-- **PHP**: Used for job form back-end logic (for the "Apply" page, if implemented).
-  
+- **JavaScript**: Optional, for any future interactivity or form validation.  
 ---
