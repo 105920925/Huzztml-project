@@ -49,25 +49,46 @@ nav div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2563eb; /* Blue background */
+    background-color: #007BFF;
     padding: 10px 20px;
-    border-bottom: 2px solid #1d4ed8; /* Darker blue border */
+    color: white;
+    font-family: Arial, sans-serif;
 }
 
 .navbar a {
     text-decoration: none;
-    color: #ffffff; /* White text for contrast */
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
 }
 
 .navbar h1 {
     margin: 0;
-    font-size: 1.5em;
-    color: #ffffff; /* White text for the title */
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar h1 img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
 
 .navbar span {
-    font-size: 1em;
-    color: #dbeafe; /* Light blue for the span */
+    display: flex;
+    align-items: center;
+}
+
+.navbar span::before {
+    content: '←';
+    margin-right: 5px;
+    font-size: 18px;
 }
 
 /* Main Content Styles */
@@ -227,6 +248,25 @@ label {
     font-size: 0.875rem;
 }
 
+#dropZone {
+    border: 2px dashed #007BFF;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, background-color 0.3s;
+    cursor: pointer;
+}
+
+#dropZone:hover {
+    background-color: #e9f5ff;
+}
+
+#dropZone.dragover {
+    border-color: #28a745;
+    background-color: #e6ffe6;
+}
+
 /* Button Styles */
 button[type="submit"] {
     background-color: #2563eb;
@@ -243,6 +283,28 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #1d4ed8;
     transform: scale(1.02);
+}
+
+#addSkillButton {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#addSkillButton:hover {
+    background-color: #0056b3;
+}
+
+#skillsContainer input[type="text"] {
+    margin-top: 5px;
+    padding: 5px;
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 /* Responsive Styles */

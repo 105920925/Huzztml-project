@@ -9,8 +9,11 @@
 <body>
     <nav class="navbar">
         <div>
-            <a href="index.html">
-                <h1>Home</h1>
+            <a href="../index.html">
+                <h1>
+                    <img src="../logo.png" alt="Logo" onerror="this.onerror=null; this.src='../../assets/default-logo.png';">
+                    Home
+                </h1>
             </a>
             <a href="../jobs.html">
                 <span>Back to Jobs</span>
@@ -87,14 +90,20 @@
                 
                 <fieldset>
                     <legend>Required Technical Skills *</legend>
-                    <label><input type="checkbox" name="skills" value="Programming" required> Programming</label>
-                    <label><input type="checkbox" name="skills" value="Networking" required> Networking</label>
-                    <label><input type="checkbox" name="skills" value="Database Management" required> Database Management</label>
+                    <div id="skillsContainer">
+                        <label><input type="checkbox" name="skills" value="Programming" required> Programming</label>
+                        <label><input type="checkbox" name="skills" value="Networking" required> Networking</label>
+                        <label><input type="checkbox" name="skills" value="Database Management" required> Database Management</label>
+                    </div>
+                    <button type="button" id="addSkillButton">+ Add Skill</button>
                 </fieldset>
                 
                 <div>
-                    <label for="otherSkills">Other Skills</label>
-                    <textarea id="otherSkills" name="otherSkills" rows="3" placeholder="List any additional skills..."></textarea>
+                    <label for="resume">Upload Resume *</label>
+                    <div id="dropZone" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
+                        Drag and drop your file here or click to upload
+                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" style="display: none;" required>
+                    </div>
                 </div>
                 
                 <div>
@@ -106,5 +115,47 @@
         </div>
     </main>
 
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('resume');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = 'green';
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.style.borderColor = '#ccc';
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#ccc';
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+            }
+        });
+
+        const skillsContainer = document.getElementById('skillsContainer');
+        const addSkillButton = document.getElementById('addSkillButton');
+
+        addSkillButton.addEventListener('click', () => {
+            const newSkillDiv = document.createElement('div');
+            const newSkillInput = document.createElement('input');
+            const newSkillLabel = document.createElement('label');
+
+            newSkillInput.type = 'text';
+            newSkillInput.name = 'skills';
+            newSkillInput.placeholder = 'Enter skill';
+            newSkillInput.required = true;
+
+            newSkillLabel.appendChild(newSkillInput);
+            newSkillDiv.appendChild(newSkillLabel);
+            skillsContainer.appendChild(newSkillDiv);
+        });
+    </script>
 </body>
 </html>
