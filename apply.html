@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="applystyle.css">
 </head>
 <body>
-    <nav>
+    <nav class="navbar">
         <div>
             <a href="index.html">
                 <h1>Home</h1>
@@ -32,58 +32,69 @@
                         </select>
                     </div>
                     <div>
-                        <label for="fullName">Full Name *</label>
-                        <input type="text" id="fullName" name="fullName" required>
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" maxlength="20" pattern="[A-Za-z]+" required>
+                    </div>
+                    <div>
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" maxlength="20" pattern="[A-Za-z]+" required>
+                    </div>
+                    <div>
+                        <label for="dob">Date of Birth *</label>
+                        <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy" pattern="\d{2}/\d{2}/\d{4}" required>
+                    </div>
+                    <fieldset>
+                        <legend>Gender *</legend>
+                        <label><input type="radio" name="gender" value="Male" required> Male</label>
+                        <label><input type="radio" name="gender" value="Female" required> Female</label>
+                        <label><input type="radio" name="gender" value="Other" required> Other</label>
+                    </fieldset>
+                    <div>
+                        <label for="streetAddress">Street Address *</label>
+                        <input type="text" id="streetAddress" name="streetAddress" maxlength="40" required>
+                    </div>
+                    <div>
+                        <label for="suburb">Suburb/Town *</label>
+                        <input type="text" id="suburb" name="suburb" maxlength="40" required>
+                    </div>
+                    <div>
+                        <label for="state">State *</label>
+                        <select id="state" name="state" required>
+                            <option value="" disabled selected>Select a state</option>
+                            <option value="VIC">VIC</option>
+                            <option value="NSW">NSW</option>
+                            <option value="QLD">QLD</option>
+                            <option value="NT">NT</option>
+                            <option value="WA">WA</option>
+                            <option value="SA">SA</option>
+                            <option value="TAS">TAS</option>
+                            <option value="ACT">ACT</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="postcode">Postcode *</label>
+                        <input type="text" id="postcode" name="postcode" pattern="\d{4}" required>
                     </div>
                     <div>
                         <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                     </div>
                     <div>
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div>
-                        <label for="location">Location</label>
-                        <input type="text" id="location" name="location">
+                        <label for="phone">Phone *</label>
+                        <input type="text" id="phone" name="phone" pattern="[0-9 ]{8,12}" required>
                     </div>
                 </div>
                 
-                <div>
-                    <label for="resume">Resume *</label>
-                    <div class="file-upload-area">
-                        <input type="file" id="resume" name="resume" required accept=".pdf,.doc,.docx">
-                        <p>Drag & drop your resume here, or click to upload</p>
-                        <p>PDF, DOC, DOCX (Max. 5MB)</p>
-                    </div>
-                </div>
+                <fieldset>
+                    <legend>Required Technical Skills *</legend>
+                    <label><input type="checkbox" name="skills" value="Programming" required> Programming</label>
+                    <label><input type="checkbox" name="skills" value="Networking" required> Networking</label>
+                    <label><input type="checkbox" name="skills" value="Database Management" required> Database Management</label>
+                </fieldset>
                 
                 <div>
-                    <label for="coverLetter">Cover Letter</label>
-                    <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Tell us why you'd be a great fit for this position..."></textarea>
-                </div>
-                
-                <div>
-                    <div>
-                        <label for="education">Education *</label>
-                        <textarea id="education" name="education" rows="3" placeholder="Enter your education details..." required></textarea>
-                    </div>
-                    <div>
-                        <label for="experience">Experience *</label>
-                        <textarea id="experience" name="experience" rows="3" placeholder="Enter your work experience..." required></textarea>
-                    </div>
-                    <div>
-                        <label for="skills">Skills *</label>
-                        <textarea id="skills" name="skills" rows="3" placeholder="List your relevant skills..." required></textarea>
-                    </div>
-                    <div>
-                        <label for="portfolio">Portfolio/Website</label>
-                        <input type="url" id="portfolio" name="portfolio" placeholder="Enter a link to your portfolio or website">
-                    </div>
-                    <div>
-                        <label for="linkedin">LinkedIn Profile</label>
-                        <input type="url" id="linkedin" name="linkedin" placeholder="Enter your LinkedIn profile URL">
-                    </div>
+                    <label for="otherSkills">Other Skills</label>
+                    <textarea id="otherSkills" name="otherSkills" rows="3" placeholder="List any additional skills..."></textarea>
                 </div>
                 
                 <div>
