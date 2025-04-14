@@ -1,0 +1,240 @@
+/* Global Styles - These apply to the entire document */
+body {
+    font-family: Arial, sans-serif; /* Sets the main font for the entire page */
+    line-height: 1.6; /* Controls the spacing between lines of text */
+    margin: 0; /* Removes default spacing around the edge of the page */
+    padding: 0; /* Removes default internal spacing */
+    color: #333; /* Sets the main text color (dark gray) */
+    background-color: #f5f7fa; /* Sets a light background color for the page */
+}
+
+/* Container class - Creates a centered content area with maximum width */
+.container {
+    width: 90%; /* Takes 90% of the available width */
+    max-width: 1200px; /* Never gets wider than 1200px */
+    margin: 0 auto; /* Centers the container (0 for top/bottom, auto for left/right) */
+    padding: 20px; /* Adds space inside the container */
+}
+
+/* Navigation bar styling */
+nav {
+    background-color: #2c3e50; /* Dark blue background for navigation */
+    padding: 1rem 0; /* Adds space above and below navigation items (1rem = 16px) */
+}
+
+/* Navigation list styling */
+nav ul {
+    display: flex; /* Makes list items display horizontally instead of vertically */
+    list-style: none; /* Removes bullet points from list */
+    justify-content: center; /* Centers the navigation links */
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation list items */
+nav li {
+    margin: 0 15px; /* Adds space between navigation items */
+}
+
+/* Navigation links */
+nav a {
+    color: white; /* Makes links white */
+    text-decoration: none; /* Removes underline from links */
+    font-weight: bold; /* Makes link text bold */
+}
+
+/* Navigation links when hovered */
+nav a:hover {
+    color: #3498db; /* Changes link color to blue when mouse hovers over it */
+}
+
+/* Header section styling */
+header {
+    padding: 2rem 0; /* Adds space above and below header content */
+    background-color: #1F1E3E; /* Blue background for header */
+    color: white; /* White text in header */
+}
+
+/* Header container for flexbox layout */
+.header-container {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    gap: 2rem; /* Space between image and text */
+}
+
+/* Header image container */
+.header-image {
+    flex: 0 0 30%; /* Take 30% of the space, don't grow or shrink */
+}
+
+/* Header image styling */
+.header-image img {
+    max-width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 0px; /* Round the corners */
+    box-shadow: 0 0px 0px rgb(18, 18, 18); /* Add shadow effect */
+}
+
+/* Header text container */
+.header-text {
+    flex: 1; /* Take remaining space */
+}
+
+/* Main heading (h1) style using CSS shorthand font property */
+/* This is required by the assignment specifications */
+h1 {
+    font: small-caps 2.5rem "Georgia", serif; /* Font shorthand: variant size family */
+    color: #f0f2f5; /* Dark blue color for headings */
+    margin-bottom: 1.5rem; /* Space below the heading */
+    text-align: center; /* Centers the heading */
+}
+
+/* Second-level heading style */
+h2 {
+    color: #3498db; /* Blue color for h2 headings */
+    border-bottom: 2px solid #3498db; /* Adds a blue line below h2 headings */
+    padding-bottom: 0.5rem; /* Adds space between text and the border */
+}
+
+/* Third-level heading style */
+h3 {
+    color: #2c3e50; /* Dark blue color for h3 headings */
+}
+
+/* Main content area styling */
+main {
+    background-color: white; /* White background for main content */
+    padding: 2rem; /* Adds space inside the main content area */
+    border-radius: 8px; /* Rounds the corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow effect */
+}
+
+/* Aside (sidebar) styling - required by assignment specifications */
+aside {
+    width: 25%; /* Makes aside take 25% of the available width */
+    float: right; /* Positions the aside on the right side */
+    background-color: #eaf2f8; /* Light blue background */
+    padding: 1.5rem; /* Adds space inside the aside */
+    margin-left: 2rem; /* Adds space to the left of the aside */
+    margin-bottom: 1rem; /* Adds space below the aside */
+    border: 2px solid #3498db; /* Adds a blue border around the aside */
+    border-radius: 8px; /* Rounds the corners */
+}
+
+/* Removes the top margin from h3 headings in asides */
+aside h3 {
+    margin-top: 0;
+}
+
+/* Section styling - used for major content divisions */
+section {
+    margin-bottom: 2.5rem; /* Adds space below each section */
+    overflow: auto; /* Ensures the section contains floating elements */
+}
+
+/* Job card styling - each job listing is contained in a card */
+.job-card {
+    background-color: #fff; /* White background */
+    border-left: 4px solid #3498db; /* Blue accent border on the left */
+    padding: 1.5rem; /* Adds space inside the card */
+    margin-bottom: 2rem; /* Adds space below each card */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+/* Job metadata styling (reference number, reports to, salary) */
+.job-meta {
+    display: flex; /* Makes items display in a row */
+    justify-content: space-between; /* Spreads items evenly */
+    border-bottom: 1px solid #eee; /* Adds a light border below */
+    padding-bottom: 1rem; /* Adds space below the content */
+    margin-bottom: 1rem; /* Adds space below the border */
+    font-size: 0.9rem; /* Makes text slightly smaller */
+    color: #7f8c8d; /* Sets text to a medium gray */
+}
+
+/* Unordered list styling (bullet points) */
+ul {
+    list-style-type: square; /* Uses square bullets instead of circles */
+    padding-left: 2rem; /* Indents the list */
+}
+
+/* Ordered list styling (numbered lists) */
+ol {
+    padding-left: 2rem; /* Indents the list */
+}
+
+/* Requirements section styling (essential & preferable skills) */
+.requirements {
+    display: flex; /* Makes the two columns display side-by-side */
+    gap: 2rem; /* Adds space between columns */
+}
+
+/* Individual columns in requirements section */
+.requirements div {
+    flex: 1; /* Makes both columns take equal space */
+}
+
+/* Footer styling - required by assignment specifications */
+footer {
+    background-color: #2c3e50; /* Dark blue background */
+    color: white; /* White text */
+    text-align: center; /* Centers text */
+    padding: 1.5rem 0; /* Adds space above and below footer content */
+    margin-top: 2rem; /* Adds space above the footer */
+    width: 100%; /* Makes the footer span the full width */
+}
+
+/* Footer paragraph styling */
+footer p {
+    font-size: 0.8rem; /* Makes footer text small - required by specifications */
+    margin: 0.5rem 0; /* Adds small space between footer lines */
+}
+
+/* Call-to-action button styling */
+.cta-button {
+    display: inline-block; /* Makes the button inline but allows height/width */
+    background-color: #3498db; /* Blue background */
+    color: white; /* White text */
+    padding: 0.75rem 1.5rem; /* Adds space inside the button */
+    text-decoration: none; /* Removes underline from the link */
+    border-radius: 4px; /* Slightly rounds the corners */
+    font-weight: bold; /* Makes button text bold */
+    margin-top: 1rem; /* Adds space above the button */
+}
+
+/* Button hover effect */
+.cta-button:hover {
+    background-color: #2980b9; /* Darker blue when hovered */
+}
+
+/* Media query for responsive design on smaller screens */
+@media (max-width: 768px) {
+    /* Make header stack vertically on smaller screens */
+    .header-container {
+        flex-direction: column;
+    }
+    
+    /* Make header image take full width on small screens */
+    .header-image {
+        flex: 0 0 100%;
+    }
+    
+    /* Make aside take full width on small screens */
+    aside {
+        width: 100%;
+        float: none;
+        margin-left: 0;
+        margin-bottom: 2rem;
+    }
+    
+    /* Stack requirements columns on small screens */
+    .requirements {
+        flex-direction: column;
+    }
+    
+    /* Stack job metadata on small screens */
+    .job-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
