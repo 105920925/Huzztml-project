@@ -1,0 +1,169 @@
+<?php include("header.inc"); ?>
+<?php include("menu.inc"); ?>
+
+<!-- Navigation bar -->
+    <nav class="navbar">
+        <div>
+            <!-- Link to the home page -->
+            <a href="index.php">
+                <h1>
+                    <img src="../images/logo.png" alt="Logo" onerror="this.onerror=null; this.src='../../images/default-logo.png';">
+                    Home
+                </h1>
+            </a>
+            <!-- Link to the jobs page -->
+            <a href="jobs.php">
+                <span>Back to Jobs</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <div>
+            <h1>Apply for a Job</h1>
+            <!-- Job application form -->
+            <form id="applicationForm">
+                <div>
+                    <!-- Job title selection -->
+                    <div>
+                        <label for="jobTitle">Job Title *</label>
+                        <select id="jobTitle" name="jobTitle" required>
+                            <option value="" disabled selected>Select a job</option>
+                            <option value="Software Developer">Software Developer</option>
+                            <option value="Cyber Security Analyst">Cyber Security Analyst</option>
+                        </select>
+                    </div>
+                    <!-- Personal details -->
+                    <div>
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" maxlength="20" pattern="[A-Za-z]+" required>
+                    </div>
+                    <div>
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" maxlength="20" pattern="[A-Za-z]+" required>
+                    </div>
+                    <div>
+                        <label for="dob">Date of Birth *</label>
+                        <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy" pattern="\d{2}/\d{2}/\d{4}" required>
+                    </div>
+                    <!-- Gender selection -->
+                    <fieldset>
+                        <legend>Gender *</legend>
+                        <label><input type="radio" name="gender" value="Male" required> Male</label>
+                        <label><input type="radio" name="gender" value="Female" required> Female</label>
+                        <label><input type="radio" name="gender" value="Other" required> Other</label>
+                    </fieldset>
+                    <!-- Address details -->
+                    <div>
+                        <label for="streetAddress">Street Address *</label>
+                        <input type="text" id="streetAddress" name="streetAddress" maxlength="40" required>
+                    </div>
+                    <div>
+                        <label for="suburb">Suburb/Town *</label>
+                        <input type="text" id="suburb" name="suburb" maxlength="40" required>
+                    </div>
+                    <div>
+                        <label for="state">State *</label>
+                        <select id="state" name="state" required>
+                            <option value="" disabled selected>Select a state</option>
+                            <option value="VIC">VIC</option>
+                            <option value="NSW">NSW</option>
+                            <option value="QLD">QLD</option>
+                            <option value="NT">NT</option>
+                            <option value="WA">WA</option>
+                            <option value="SA">SA</option>
+                            <option value="TAS">TAS</option>
+                            <option value="ACT">ACT</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="postcode">Postcode *</label>
+                        <input type="text" id="postcode" name="postcode" pattern="\d{4}" required>
+                    </div>
+                    <!-- Contact details -->
+                    <div>
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                    </div>
+                    <div>
+                        <label for="phone">Phone *</label>
+                        <input type="text" id="phone" name="phone" pattern="[0-9 ]{8,12}" required>
+                    </div>
+                </div>
+                
+                <!-- Technical skills section -->
+                <fieldset>
+                    <legend>Required Technical Skills *</legend>
+                    <div id="skillsContainer">
+                        <label><input type="checkbox" name="skills" value="Programming" required> Programming</label>
+                        <label><input type="checkbox" name="skills" value="Networking" required> Networking</label>
+                        <label><input type="checkbox" name="skills" value="Database Management" required> Database Management</label>
+                    </div>
+                    <button type="button" id="addSkillButton">+ Add Skill</button>
+                </fieldset>
+                
+                <!-- Resume upload section -->
+                <div>
+                    <label for="resume">Upload Resume *</label>
+                    <div id="dropZone" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
+                        Drag and drop your file here or click to upload
+                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" style="display: none;" required>
+                    </div>
+                </div>
+                
+                <!-- Submit button -->
+                <div>
+                    <button type="submit">
+                        Submit Application
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- JavaScript for interactive features -->
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('resume');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = 'green';
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.style.borderColor = '#ccc';
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#ccc';
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+            }
+        });
+
+        const skillsContainer = document.getElementById('skillsContainer');
+        const addSkillButton = document.getElementById('addSkillButton');
+
+        addSkillButton.addEventListener('click', () => {
+            const newSkillDiv = document.createElement('div');
+            const newSkillInput = document.createElement('input');
+            const newSkillLabel = document.createElement('label');
+
+            newSkillInput.type = 'text';
+            newSkillInput.name = 'skills';
+            newSkillInput.placeholder = 'Enter skill';
+            newSkillInput.required = true;
+
+            newSkillLabel.appendChild(newSkillInput);
+            newSkillDiv.appendChild(newSkillLabel);
+            skillsContainer.appendChild(newSkillDiv);
+        });
+    </script>
+    <?php include 'footer.inc'; ?>
+
+<?php include("footer.inc"); ?>
