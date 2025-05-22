@@ -41,7 +41,7 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <li>Career advancement</li>
         </ul>
         <p>We're always looking for talented individuals who are passionate about technology and innovation.</p>
-        <a href="apply.html" class="cta-button">Apply Now</a>
+        <a href="apply.php" class="cta-button">Apply Now</a>
     </aside>
 
     <!-- Current openings section - contains job listings -->
