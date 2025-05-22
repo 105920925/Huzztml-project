@@ -3,118 +3,161 @@
 <?php include("includes/menu.inc"); ?>
 
 <!-- Navigation bar -->
-    <nav class="navbar">
-        <div>
-            <!-- Link to the home page -->
-            <a href="index.php">
-                <h1>
-                    <img src="styles/images/logo.png" alt="Logo" onerror="this.onerror=null; this.src='../../images/default-logo.png';">
-                    Home
-                </h1>
-            </a>
-            <!-- Link to the jobs page -->
-            <a href="jobs.php">
-                <span>Back to Jobs</span>
-            </a>
-        </div>
-    </nav>
+<nav class="navbar">
+    <div>
+        <a href="index.php">
+            <h1>
+                <img src="styles/images/logo.png" alt="Logo" onerror="this.onerror=null; this.src='../../images/default-logo.png';">
+                Home
+            </h1>
+        </a>
+        <a href="jobs.php">
+            <span>Back to Jobs</span>
+        </a>
+    </div>
+</nav>
 
-    <main>
-        <div>
-            <h1>Apply for a Job</h1>
-            <!-- Job application form -->
-            <form id="applicationForm" action="process_eoi.php" method="post" enctype="multipart/form-data" novalidate="novalidate">
-                <div>
-                    <!-- Job title selection -->
-                    <select id="jobTitle" name="jobref">
-                    <input type="text" id="firstName" name="fname">
-                    <input type="text" id="lastName" name="lname">
-                    <input type="text" id="streetAddress" name="street">
-                    <input type="text" id="suburb" name="suburb">
-                    <select id="state" name="state">
-                    <input type="text" id="postcode" name="postcode">
-                    <input type="email" id="email" name="email">
-                    <input type="text" id="phone" name="phone">
+<main>
+    <div>
+        <h1>Apply for a Job</h1>
+        <form id="applicationForm" action="process_eoi.php" method="post" enctype="multipart/form-data" novalidate="novalidate">
 
-                
-                <!-- Technical skills section -->
-                <fieldset>
-                    <legend>Required Technical Skills *</legend>
-                    <div id="skillsContainer">
-                        <label><input type="checkbox" name="skills[]" value="Skill1"> Programming</label>
+            <!-- Job title -->
+            <div>
+                <label for="jobTitle">Job Title *</label>
+                <select id="jobTitle" name="jobref" required>
+                    <option value="" disabled selected>Select a job</option>
+                    <option value="DEV01">Software Developer</option>
+                    <option value="SEC02">Cyber Security Analyst</option>
+                </select>
+            </div>
+
+            <!-- Personal Info -->
+            <div>
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="fname" maxlength="20" pattern="[A-Za-z]+" required>
+            </div>
+
+            <div>
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lname" maxlength="20" pattern="[A-Za-z]+" required>
+            </div>
+
+            <div>
+                <label for="streetAddress">Street Address *</label>
+                <input type="text" id="streetAddress" name="street" maxlength="40" required>
+            </div>
+
+            <div>
+                <label for="suburb">Suburb/Town *</label>
+                <input type="text" id="suburb" name="suburb" maxlength="40" required>
+            </div>
+
+            <div>
+                <label for="state">State *</label>
+                <select id="state" name="state" required>
+                    <option value="" disabled selected>Select a state</option>
+                    <option value="VIC">VIC</option>
+                    <option value="NSW">NSW</option>
+                    <option value="QLD">QLD</option>
+                    <option value="NT">NT</option>
+                    <option value="WA">WA</option>
+                    <option value="SA">SA</option>
+                    <option value="TAS">TAS</option>
+                    <option value="ACT">ACT</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="postcode">Postcode *</label>
+                <input type="text" id="postcode" name="postcode" pattern="\d{4}" required>
+            </div>
+
+            <div>
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div>
+                <label for="phone">Phone *</label>
+                <input type="text" id="phone" name="phone" pattern="[0-9 ]{8,12}" required>
+            </div>
+
+            <!-- Skills -->
+            <fieldset>
+                <legend>Required Technical Skills *</legend>
+                <div id="skillsContainer">
+                    <label><input type="checkbox" name="skills[]" value="Skill1"> Programming</label>
                     <label><input type="checkbox" name="skills[]" value="Skill2"> Networking</label>
                     <label><input type="checkbox" name="skills[]" value="Skill3"> Database Management</label>
                     <label><input type="checkbox" name="skills[]" value="Skill4"> Web Development</label>
-                    </div>
-                    <button type="button" id="addSkillButton">+ Add Skill</button>
-                </fieldset>
-                
-                <div>
+                </div>
+                <button type="button" id="addSkillButton">+ Add Skill</button>
+            </fieldset>
+
+            <!-- Other Skills -->
+            <div>
                 <label for="otherskills">Other Skills</label>
                 <textarea id="otherskills" name="otherskills" rows="4" cols="50"></textarea>
+            </div>
+
+            <!-- Resume upload -->
+            <div>
+                <label for="resume">Upload Resume *</label>
+                <div id="dropZone" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
+                    Drag and drop your file here or click to upload
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" style="display: none;" required>
                 </div>
+            </div>
 
+            <!-- Submit -->
+            <div>
+                <button type="submit">Submit Application</button>
+            </div>
+        </form>
+    </div>
+</main>
 
-                <!-- Resume upload section -->
-                <div>
-                    <label for="resume">Upload Resume *</label>
-                    <div id="dropZone" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
-                        Drag and drop your file here or click to upload
-                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" style="display: none;" required>
-                    </div>
-                </div>
-                
-                <!-- Submit button -->
-                <div>
-                    <button type="submit">
-                        Submit Application
-                    </button>
-                </div>
-            </form>
-        </div>
-    </main>
+<!-- JavaScript for drop and skill input -->
+<script>
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('resume');
 
-    <!-- JavaScript for interactive features -->
-    <script>
-        const dropZone = document.getElementById('dropZone');
-        const fileInput = document.getElementById('resume');
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'green';
+    });
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.style.borderColor = '#ccc';
+    });
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = '#ccc';
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            fileInput.files = files;
+        }
+    });
 
-        dropZone.addEventListener('click', () => fileInput.click());
+    // Add custom skill input field
+    const skillsContainer = document.getElementById('skillsContainer');
+    const addSkillButton = document.getElementById('addSkillButton');
 
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.style.borderColor = 'green';
-        });
+    addSkillButton.addEventListener('click', () => {
+        const newSkillDiv = document.createElement('div');
+        const newSkillInput = document.createElement('input');
+        const newSkillLabel = document.createElement('label');
 
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.style.borderColor = '#ccc';
-        });
+        newSkillInput.type = 'text';
+        newSkillInput.name = 'skills[]';
+        newSkillInput.placeholder = 'Enter skill';
+        newSkillInput.required = false;
 
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.style.borderColor = '#ccc';
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                fileInput.files = files;
-            }
-        });
+        newSkillLabel.appendChild(newSkillInput);
+        newSkillDiv.appendChild(newSkillLabel);
+        skillsContainer.appendChild(newSkillDiv);
+    });
+</script>
 
-        const skillsContainer = document.getElementById('skillsContainer');
-        const addSkillButton = document.getElementById('addSkillButton');
-
-        addSkillButton.addEventListener('click', () => {
-            const newSkillDiv = document.createElement('div');
-            const newSkillInput = document.createElement('input');
-            const newSkillLabel = document.createElement('label');
-
-            newSkillInput.type = 'text';
-            newSkillInput.name = 'skills';
-            newSkillInput.placeholder = 'Enter skill';
-            newSkillInput.required = true;
-
-            newSkillLabel.appendChild(newSkillInput);
-            newSkillDiv.appendChild(newSkillLabel);
-            skillsContainer.appendChild(newSkillDiv);
-        });
-    </script>
-    <?php include("includes/footer.inc"); ?>
+<?php include("includes/footer.inc"); ?>

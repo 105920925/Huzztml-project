@@ -2,5 +2,5 @@
 $host = "localhost";
 $user = "admin";
 $pwd = "admin";
-$sql_db = "job_applications"; // change to your database name
+$sql_db = "jobs"; // change to your database name
 ?>
