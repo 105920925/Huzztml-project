@@ -92,7 +92,6 @@
                     <label><input type="checkbox" name="skills[]" value="Skill3"> Database Management</label>
                     <label><input type="checkbox" name="skills[]" value="Skill4"> Web Development</label>
                 </div>
-                <button type="button" id="addSkillButton">+ Add Skill</button>
             </fieldset>
 
             <!-- Other Skills -->
@@ -104,10 +103,7 @@
             <!-- Resume upload -->
             <div>
                 <label for="resume">Upload Resume *</label>
-                <div id="dropZone" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
-                    Drag and drop your file here or click to upload
-                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" style="display: none;" required>
-                </div>
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
             </div>
 
             <!-- Submit -->
@@ -117,47 +113,5 @@
         </form>
     </div>
 </main>
-
-<!-- JavaScript for drop and skill input -->
-<script>
-    const dropZone = document.getElementById('dropZone');
-    const fileInput = document.getElementById('resume');
-
-    dropZone.addEventListener('click', () => fileInput.click());
-    dropZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropZone.style.borderColor = 'green';
-    });
-    dropZone.addEventListener('dragleave', () => {
-        dropZone.style.borderColor = '#ccc';
-    });
-    dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.style.borderColor = '#ccc';
-        const files = e.dataTransfer.files;
-        if (files.length > 0) {
-            fileInput.files = files;
-        }
-    });
-
-    // Add custom skill input field
-    const skillsContainer = document.getElementById('skillsContainer');
-    const addSkillButton = document.getElementById('addSkillButton');
-
-    addSkillButton.addEventListener('click', () => {
-        const newSkillDiv = document.createElement('div');
-        const newSkillInput = document.createElement('input');
-        const newSkillLabel = document.createElement('label');
-
-        newSkillInput.type = 'text';
-        newSkillInput.name = 'skills[]';
-        newSkillInput.placeholder = 'Enter skill';
-        newSkillInput.required = false;
-
-        newSkillLabel.appendChild(newSkillInput);
-        newSkillDiv.appendChild(newSkillLabel);
-        skillsContainer.appendChild(newSkillDiv);
-    });
-</script>
 
 <?php include("includes/footer.inc"); ?>
