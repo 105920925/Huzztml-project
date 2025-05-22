@@ -28,21 +28,6 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <main class="container">
 
-    <!-- Floating 'Why Join Us' section -->
-    <div class="why-join-us">
-        <h3>Why Join Us?</h3>
-        <p>At Huzztml, we believe in:</p>
-        <ul>
-            <li>Innovative work environment</li>
-            <li>Competitive compensation</li>
-            <li>Flexible work arrangements</li>
-            <li>Continuous learning opportunities</li>
-            <li>Career advancement</li>
-        </ul>
-        <p>We're always looking for talented individuals who are passionate about technology and innovation.</p>
-        <a href="apply.html" class="cta-button">Apply Now</a>
-    </div>
-
     <!-- Aside (sidebar) - contains supplementary information -->
     <aside>
         <h3>Why Join Us?</h3>
