@@ -16,10 +16,10 @@
     <header>
         <div class="container header-container">
             <div class="header-image">
-                <img src="../images/header-image.jpg" alt="Technology image">
+                <img src="styles/images/header-image.jpg" alt="Technology image">
             </div>
             <div class="header-text">
-                <img src="../images/logo.png" alt="Huzztml Logo" style="width: 150px; display: block; margin: 0 auto; opacity: 0.7;border-radius: 50%;">
+                <img src="styles/images/logo.png" alt="Huzztml Logo" style="width: 150px; display: block; margin: 0 auto; opacity: 0.7;border-radius: 50%;">
 
                 <h1>Career Opportunities at Huzztml</h1>
                 <p>Join our team of passionate tech professionals and help shape the future of technology</p>
