@@ -10,21 +10,12 @@ require 'db/db_connect.php'; // This brings in the $pdo variable
 // Query the job_listings table to get all job openings
 $stmt = $pdo->query("SELECT * FROM job_listings"); // Use the correct table name
 $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Listings</title>
-    <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="../project2/styles/jobs.css"> 
-</head>
-<body>
+?>
 
 <?php include 'includes/header.inc'; ?> <!-- Including header part -->
 <?php include 'includes/menu.inc'; ?> <!-- Including navigation bar -->
+
 
 <main class="container">
     <!-- Aside (sidebar) - contains supplementary information -->
@@ -48,7 +39,14 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h2>Current Job Openings</h2>
         <p>Explore our exciting opportunities and find your next career move with us.</p>
 
-        <!-- Dynamically output job listings -->
+<?php
+// Example output
+foreach ($jobs as $job) {
+    echo "<h3>" . htmlspecialchars($job['title']) . "</h3>";
+}
+?>
+
+                <!-- Dynamically output job listings -->
         <?php foreach ($jobs as $job): ?>
             <section class="job-card">
                 <h3><?php echo htmlspecialchars($job['title']); ?></h3> <!-- Job title -->
