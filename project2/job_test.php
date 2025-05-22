@@ -1,5 +1,23 @@
-<?php include 'header.inc'; ?> <!-- Including header part -->
-<?php include 'menu.inc'; ?> <!-- Including navigation bar -->
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
+<?php
+require 'db/db_connect.php'; // This brings in the $pdo variable
+
+$stmt = $pdo->query("SELECT * FROM job_openings"); // Now this will work
+$jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Example output
+foreach ($jobs as $job) {
+    echo "<h3>" . htmlspecialchars($job['title']) . "</h3>";
+}
+?>
+
+<?php include 'includes/header.inc'; ?> <!-- Including header part -->
+<?php include 'includes/menu.inc'; ?> <!-- Including navigation bar -->
 
 <main class="container">
     <!-- Aside (sidebar) - contains supplementary information -->
@@ -149,4 +167,4 @@
     </section>
 </main>
 
-<?php include 'footer.inc'; ?> <!-- Including footer part -->
+<?php include 'includes/footer.inc'; ?> <!-- Including footer part -->
