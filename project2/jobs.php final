@@ -28,6 +28,22 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <main class="container">
 
+    <!-- Aside (sidebar) - contains supplementary information -->
+    <aside>
+        <h3>Why Join Us?</h3>
+        <p>At Huzztml, we believe in:</p>
+        <!-- Unordered list (bullet points) - required by specifications -->
+        <ul>
+            <li>Innovative work environment</li>
+            <li>Competitive compensation</li>
+            <li>Flexible work arrangements</li>
+            <li>Continuous learning opportunities</li>
+            <li>Career advancement</li>
+        </ul>
+        <p>We're always looking for talented individuals who are passionate about technology and innovation.</p>
+        <a href="apply.php" class="cta-button">Apply Now</a>
+    </aside>
+
     <!-- Current openings section - contains job listings -->
     <section id="current-openings">
         <h2>Current Job Openings</h2>
@@ -107,27 +123,6 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </ol>
         <p>We aim to complete the entire process within 2-3 weeks to respect your time.</p>
     </section>
-
-    <div class="floating-apply">
-    <input type="checkbox" id="toggle-apply" class="toggle-apply-checkbox">
-    <label for="toggle-apply" class="toggle-apply-header">
-        💼 Why Join Us? <span class="toggle-icon">+</span>
-    </label>
-
-    <div class="apply-content">
-        <h3>Why Join Us?</h3>
-        <p>At Huzztml, we believe in:</p>
-        <ul>
-            <li>Innovative work environment</li>
-            <li>Competitive compensation</li>
-            <li>Flexible work arrangements</li>
-            <li>Continuous learning opportunities</li>
-            <li>Career advancement</li>
-        </ul>
-        <p>We're always looking for talented individuals who are passionate about technology and innovation.</p>
-        <a href="apply.php" class="cta-button">Apply Now</a>
-    </div>
-</div>
 </main>
 
 <?php include 'includes/footer.inc'; ?> <!-- Including footer part -->
