@@ -1,7 +1,7 @@
 <?php
 // Define $pdo in the global scope
 $host = 'localhost';
-$dbname = 'job_descriptions';
+$dbname = 'jobs';
 $username = 'root';
 $password = ''; // Default password for XAMPP is blank
 

@@ -1,5 +1,21 @@
-<?php include 'header.inc'; ?> <!-- Including header part -->
-<?php include 'menu.inc'; ?> <!-- Including navigation bar -->
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
+<?php
+require 'db/db_connect.php'; // This brings in the $pdo variable
+
+// Query the job_listings table to get all job openings
+$stmt = $pdo->query("SELECT * FROM job_listings"); // Use the correct table name
+$jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
+<?php include 'includes/header.inc'; ?> <!-- Including header part -->
+<?php include 'includes/menu.inc'; ?> <!-- Including navigation bar -->
+
 
 <main class="container">
     <!-- Aside (sidebar) - contains supplementary information -->
@@ -23,114 +39,71 @@
         <h2>Current Job Openings</h2>
         <p>Explore our exciting opportunities and find your next career move with us.</p>
 
-        <!-- Job listing 1 - G01- Software Developer (as specified) -->
-        <section class="job-card">
-            <h3>G01- Software Developer</h3> <!-- Updated job title as requested -->
-            <!-- Job metadata section with reference, reporting line, and salary -->
-            <div class="job-meta">
-                <span><strong>Reference:</strong> G01SD</span> <!-- Job reference number - required by specs -->
-                <span><strong>Reports To:</strong> Technical Lead</span> <!-- Reporting line - required by specs -->
-                <span><strong>Salary Range:</strong> $85,000 - $115,000</span> <!-- Salary - required by specs -->
-            </div>
+<?php
+// Example output
+foreach ($jobs as $job) {
+    echo "<h3>" . htmlspecialchars($job['title']) . "</h3>";
+}
+?>
 
-            <!-- Job overview section -->
-            <h4>Position Overview</h4>
-            <p>We are seeking a talented Software Developer to join our growing development team. You will be responsible for developing and maintaining software applications, collaborating with cross-functional teams, and implementing innovative solutions to complex problems.</p>
+                <!-- Dynamically output job listings -->
+        <?php foreach ($jobs as $job): ?>
+            <section class="job-card">
+                <h3><?php echo htmlspecialchars($job['title']); ?></h3> <!-- Job title -->
 
-            <!-- Key responsibilities section with ordered list - required by specs -->
-            <h4>Key Responsibilities</h4>
-            <ol>
-                <li>Design, develop, and maintain efficient, reusable, and reliable code</li>
-                <li>Collaborate with cross-functional teams to define, design, and ship new features</li>
-                <li>Work with front-end and back-end technologies as needed for project goals</li>
-                <li>Implement automated testing to ensure code quality and reliability</li>
-                <li>Participate in code reviews and contribute to documentation</li>
-                <li>Optimize applications for maximum speed and scalability</li>
-            </ol>
-
-            <!-- Qualifications section divided into essential and preferable - required by specs -->
-            <h4>Qualifications & Skills</h4>
-            <div class="requirements">
-                <div>
-                    <h5>Essential:</h5>
-                    <ul>
-                        <li>Bachelor's degree in Computer Science or related field</li>
-                        <li>3+ years of experience in software development</li>
-                        <li>Proficiency in at least one modern programming language (Java, Python, C#)</li>
-                        <li>Experience with relational databases and SQL</li>
-                        <li>Knowledge of software design patterns and principles</li>
-                        <li>Understanding of data structures and algorithms</li>
-                        <li>Experience with version control systems (Git)</li>
-                    </ul>
+                <!-- Job metadata section with reference, reporting line, and salary -->
+                <div class="job-meta">
+                    <span><strong>Reference:</strong> <?php echo htmlspecialchars($job['reference_code']); ?></span>
+                    <span><strong>Reports To:</strong> <?php echo htmlspecialchars($job['reports_to']); ?></span>
+                    <span><strong>Salary Range:</strong> <?php echo htmlspecialchars($job['salary_range']); ?></span>
                 </div>
-                <div>
-                    <h5>Preferable:</h5>
-                    <ul>
-                        <li>Experience with cloud platforms (AWS, Azure, GCP)</li>
-                        <li>Knowledge of containerization (Docker, Kubernetes)</li>
-                        <li>Understanding of CI/CD pipelines</li>
-                        <li>Experience with microservices architecture</li>
-                        <li>Knowledge of test-driven development</li>
-                        <li>Experience with Agile development methodologies</li>
-                    </ul>
+
+                <!-- Job overview section -->
+                <h4>Position Overview</h4>
+                <p><?php echo nl2br(htmlspecialchars($job['overview'])); ?></p> <!-- Position overview -->
+
+                <!-- Key responsibilities section -->
+                <h4>Key Responsibilities</h4>
+                <ol>
+                    <?php 
+                    // Convert the responsibilities into an array and output each item
+                    $responsibilities = explode("\n", $job['responsibilities']);
+                    foreach ($responsibilities as $responsibility):
+                    ?>
+                        <li><?php echo htmlspecialchars($responsibility); ?></li>
+                    <?php endforeach; ?>
+                </ol>
+
+                <!-- Qualifications section -->
+                <h4>Qualifications & Skills</h4>
+                <div class="requirements">
+                    <div>
+                        <h5>Essential:</h5>
+                        <ul>
+                            <?php 
+                            // Convert essential qualifications into an array and output each item
+                            $essential_qualifications = explode("\n", $job['essential_qualifications']);
+                            foreach ($essential_qualifications as $qualification):
+                            ?>
+                                <li><?php echo htmlspecialchars($qualification); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>Preferable:</h5>
+                        <ul>
+                            <?php 
+                            // Convert preferable qualifications into an array and output each item
+                            $preferable_qualifications = explode("\n", $job['preferable_qualifications']);
+                            foreach ($preferable_qualifications as $qualification):
+                            ?>
+                                <li><?php echo htmlspecialchars($qualification); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Job listing 2 - Cybersecurity Analyst -->
-        <section class="job-card">
-            <h3>Cybersecurity Analyst</h3>
-            <!-- Job metadata section with reference, reporting line, and salary -->
-            <div class="job-meta">
-                <span><strong>Reference:</strong> CA512</span> <!-- Job reference number - required by specs -->
-                <span><strong>Reports To:</strong> Security Operations Manager</span> <!-- Reporting line - required by specs -->
-                <span><strong>Salary Range:</strong> $90,000 - $120,000</span> <!-- Salary - required by specs -->
-            </div>
-
-            <!-- Job overview section -->
-            <h4>Position Overview</h4>
-            <p>We are looking for a skilled Cybersecurity Analyst to protect our systems and data from cyber threats. In this role, you will be responsible for implementing security measures, monitoring for breaches, and responding to security incidents to ensure our digital assets remain secure.</p>
-
-            <!-- Key responsibilities section with ordered list - required by specs -->
-            <h4>Key Responsibilities</h4>
-            <ol>
-                <li>Monitor security systems for potential threats and security breaches</li>
-                <li>Conduct vulnerability assessments and penetration testing</li>
-                <li>Develop and implement security policies and procedures</li>
-                <li>Investigate security incidents and provide response</li>
-                <li>Configure and maintain security tools and technologies</li>
-                <li>Provide security awareness training to employees</li>
-                <li>Stay updated on the latest cybersecurity trends and threats</li>
-            </ol>
-
-            <!-- Qualifications section divided into essential and preferable - required by specs -->
-            <h4>Qualifications & Skills</h4>
-            <div class="requirements">
-                <div>
-                    <h5>Essential:</h5>
-                    <ul>
-                        <li>Bachelor's degree in Cybersecurity, IT, or related field</li>
-                        <li>2+ years of experience in cybersecurity or related IT role</li>
-                        <li>Knowledge of security frameworks (NIST, ISO 27001)</li>
-                        <li>Experience with security tools (SIEM, IDS/IPS, firewalls)</li>
-                        <li>Understanding of network security concepts</li>
-                        <li>Knowledge of vulnerability management</li>
-                        <li>Strong analytical and problem-solving skills</li>
-                    </ul>
-                </div>
-                <div>
-                    <h5>Preferable:</h5>
-                    <ul>
-                        <li>Cybersecurity certifications (CISSP, CEH, Security+)</li>
-                        <li>Experience with cloud security (AWS, Azure, GCP)</li>
-                        <li>Knowledge of scripting languages (Python, PowerShell)</li>
-                        <li>Experience with incident response</li>
-                        <li>Familiarity with compliance regulations (GDPR, HIPAA)</li>
-                        <li>Experience with threat intelligence platforms</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            </section>
+        <?php endforeach; ?>
     </section>
 
     <!-- Application process section - explains the hiring process -->
@@ -149,4 +122,4 @@
     </section>
 </main>
 
-<?php include 'footer.inc'; ?> <!-- Including footer part -->
+<?php include 'includes/footer.inc'; ?> <!-- Including footer part -->
