@@ -1,0 +1,254 @@
+/* General styles */
+html, body {
+    height: 100%;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    background-image: url('../styles/images/interviewpic.jpg'); /* Ensure this path is correct */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 60px 10px;
+    position: relative;
+}
+
+.header-content {
+    background-color: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background for better readability */
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+header p {
+    margin: 10px 0 0;
+    font-size: 1.2em;
+}
+
+/* Header image styles */
+header img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Company description and logo styles */
+header div img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Retain shadow for better appearance */
+    border: none; /* Remove yellow border */
+}
+
+header div p {
+    text-align: center;
+    font-size: 1.1em;
+    color: #f0f0f0;
+    margin-top: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Navigation styles */
+nav {
+    background-color: #0066cc;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.1em;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Section styles */
+section {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+section h1, section h2 {
+    color: #004080;
+}
+
+section h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+section h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+section p {
+    margin-left: 20px;
+    font-size: 1em;
+}
+
+/* Button styles */
+button {
+    background-color: #004080;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #003366;
+}
+
+/* Button styles for "Read More" */
+.job-box button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.job-box button:hover {
+    background-color: #004080;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    background-color: #004080;
+    color: white;
+    padding: 10px 0;
+    margin-top: auto;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: white;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+/* Contact email styles */
+footer .contact-email {
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* Logo container styles */
+.logo-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.logo-container img {
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+}
+
+.logo-container p {
+    margin-top: 10px;
+    font-size: 1.1em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Intro text styles */
+.intro-text {
+    margin-left: 20px;
+}
+
+/* Featured jobs styles */
+.featured-jobs {
+    margin-top: 20px;
+}
+
+.job-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Featured job box styles */
+.job-box {
+    flex: 1;
+    max-width: 45%;
+    margin: 10px;
+    padding: 20px; /* Increase padding for better spacing */
+    background-color: white; /* Solid white background */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow for better pop-out effect */
+    text-align: center;
+    border: 1px solid #ddd; /* Add a light border for consistency */
+}
+
+.job-box img {
+    width: 150px; /* Set fixed width */
+    height: 150px; /* Set fixed height */
+    object-fit: cover; /* Ensure the image fits within the dimensions */
+    border-radius: 10px;
+    border: 2px solid #004080;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    background-image: none; /* Remove incorrect background-image property */
+}
+
+/* Specific style for Cyber Security Analyst image */
+.job-box img[alt="Cyber Security Analyst"] {
+    width: 120px; /* Reduce width */
+    height: 120px; /* Reduce height */
+    background-image: none; /* Remove incorrect background-image property */
+}
+
+/* Specific style for Software Developer image */
+.job-box img[alt="Software Developer"] {
+    width: 120px; /* Match width with Cyber Security Analyst */
+    height: 120px; /* Match height with Cyber Security Analyst */
+    object-fit: cover; /* Ensure the image fits within the dimensions */
+    background-image: none; /* Remove incorrect background-image property */
+}

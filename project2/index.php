@@ -1,5 +1,6 @@
 <?php include("header.inc"); ?>
 <?php include("menu.inc"); ?>
+<?php include("../styles/css/indexstyles.css"); ?>
 
 <header>
         <div class="header-content">
