@@ -16,30 +16,30 @@ function sanitise($data) {
 }
 
 // Sanitize input
-$jobRef = sanitise($_POST["jobref"]);
-$firstName = sanitise($_POST["fname"]);
-$lastName = sanitise($_POST["lname"]);
-$street = sanitise($_POST["street"]);
-$suburb = sanitise($_POST["suburb"]);
-$state = sanitise($_POST["state"]);
-$postcode = sanitise($_POST["postcode"]);
-$email = sanitise($_POST["email"]);
-$phone = sanitise($_POST["phone"]);
-$skills = $_POST["skills"] ?? [];
+$jobRef      = sanitise($_POST["jobref"]);
+$firstName   = sanitise($_POST["fname"]);
+$lastName    = sanitise($_POST["lname"]);
+$street      = sanitise($_POST["street"]);
+$suburb      = sanitise($_POST["suburb"]);
+$state       = sanitise($_POST["state"]);
+$postcode    = sanitise($_POST["postcode"]);
+$email       = sanitise($_POST["email"]);
+$phone       = sanitise($_POST["phone"]);
+$skills      = $_POST["skills"] ?? [];
 $otherSkills = isset($_POST["otherskills"]) ? sanitise($_POST["otherskills"]) : "";
 
-// Validation
+// Validate input
 $errors = [];
 
 if (!preg_match("/^[A-Za-z]{1,20}$/", $firstName)) $errors[] = "Invalid First Name";
 if (!preg_match("/^[A-Za-z]{1,20}$/", $lastName)) $errors[] = "Invalid Last Name";
 if (!preg_match("/^[\w\s]{1,40}$/", $street)) $errors[] = "Invalid Street";
 if (!preg_match("/^[\w\s]{1,40}$/", $suburb)) $errors[] = "Invalid Suburb";
-if (!preg_match("/^\d{4}$/", $postcode)) $errors[] = "Invalid Postcode";
+if (!preg_match("/^\d{4}$/", $postcode)) $errors[] = "Postcode must be 4 digits";
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Invalid Email";
-if (!preg_match("/^[\d\s]{8,12}$/", $phone)) $errors[] = "Invalid Phone";
+if (!preg_match("/^[\d\s]{8,12}$/", $phone)) $errors[] = "Phone must be 8–12 digits";
 
-// Check state & postcode match
+// Validate postcode matches state
 $statePostcodePrefixes = [
     "VIC" => ["3", "8"],
     "NSW" => ["1", "2"],
@@ -57,36 +57,38 @@ foreach ($statePostcodePrefixes[$state] as $prefix) {
         break;
     }
 }
-if (!$validPrefix) $errors[] = "Postcode does not match state";
+if (!$validPrefix) $errors[] = "Postcode does not match selected state";
 
-// File upload
+// Resume upload
 $resumePath = "";
-if (isset($_FILES['resume']) && $_FILES['resume']['error'] == UPLOAD_ERR_OK) {
+if (isset($_FILES['resume']) && $_FILES['resume']['error'] === UPLOAD_ERR_OK) {
     $upload_dir = "uploads/";
-    if (!is_dir($upload_dir)) mkdir($upload_dir);
+    if (!is_dir($upload_dir)) mkdir($upload_dir, 0777, true);
+
     $fileTmp = $_FILES['resume']['tmp_name'];
     $fileName = basename($_FILES['resume']['name']);
     $resumePath = $upload_dir . time() . "_" . $fileName;
+
     if (!move_uploaded_file($fileTmp, $resumePath)) {
-        $errors[] = "Resume upload failed.";
+        $errors[] = "Failed to upload resume.";
     }
 } else {
-    $errors[] = "Resume upload missing or failed.";
+    $errors[] = "Resume is required.";
 }
 
-// If errors, show and stop
+// If errors, stop
 if (!empty($errors)) {
     echo "<h2>Submission Error</h2><ul>";
     foreach ($errors as $e) echo "<li>$e</li>";
-    echo "</ul><p><a href='apply.php'>Back to form</a></p>";
+    echo "</ul><p><a href='apply.php'>Go back</a></p>";
     exit();
 }
 
-// Skills
-$skill1 = in_array("Skill1", $skills) ? 1 : 0;
-$skill2 = in_array("Skill2", $skills) ? 1 : 0;
-$skill3 = in_array("Skill3", $skills) ? 1 : 0;
-$skill4 = in_array("Skill4", $skills) ? 1 : 0;
+// Convert selected skills to actual names or NULL
+$skill1 = in_array("Skill1", $skills) ? "Programming" : NULL;
+$skill2 = in_array("Skill2", $skills) ? "Networking" : NULL;
+$skill3 = in_array("Skill3", $skills) ? "Database Management" : NULL;
+$skill4 = in_array("Skill4", $skills) ? "Web Development" : NULL;
 
 // Create table if not exists
 $create_table_query = "
@@ -101,28 +103,33 @@ CREATE TABLE IF NOT EXISTS eoi (
     Postcode CHAR(4) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     Phone VARCHAR(12) NOT NULL,
-    Skill1 BOOLEAN DEFAULT FALSE,
-    Skill2 BOOLEAN DEFAULT FALSE,
-    Skill3 BOOLEAN DEFAULT FALSE,
-    Skill4 BOOLEAN DEFAULT FALSE,
+    Skill1 TEXT NULL,
+    Skill2 TEXT NULL,
+    Skill3 TEXT NULL,
+    Skill4 TEXT NULL,
     OtherSkills TEXT,
     ResumePath VARCHAR(255),
     Status ENUM('New', 'Current', 'Final') DEFAULT 'New'
 )";
 mysqli_query($conn, $create_table_query);
 
-// Insert
+// Insert EOI record
 $insert_query = "
 INSERT INTO eoi (
     JobReferenceNumber, FirstName, LastName, StreetAddress, Suburb,
-    State, Postcode, Email, Phone, Skill1, Skill2, Skill3, Skill4, OtherSkills, ResumePath
+    State, Postcode, Email, Phone,
+    Skill1, Skill2, Skill3, Skill4,
+    OtherSkills, ResumePath
 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ";
+
 $stmt = mysqli_prepare($conn, $insert_query);
 mysqli_stmt_bind_param(
-    $stmt, "sssssssssssisss",
+    $stmt, "sssssssssssssss",
     $jobRef, $firstName, $lastName, $street, $suburb,
-    $state, $postcode, $email, $phone, $skill1, $skill2, $skill3, $skill4, $otherSkills, $resumePath
+    $state, $postcode, $email, $phone,
+    $skill1, $skill2, $skill3, $skill4,
+    $otherSkills, $resumePath
 );
 
 if (mysqli_stmt_execute($stmt)) {
@@ -131,7 +138,7 @@ if (mysqli_stmt_execute($stmt)) {
     echo "<p>Your EOInumber is: <strong>$eoi_id</strong></p>";
     echo "<p><a href='index.php'>Back to Home</a></p>";
 } else {
-    echo "<h2>Error submitting application</h2>";
+    echo "<h2>Failed to submit application. Please try again.</h2>";
 }
 
 mysqli_stmt_close($stmt);

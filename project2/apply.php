@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="styles/applystyle.css">
 <?php include("includes/menu.inc"); ?>
 
-<!-- Navigation bar -->
 <nav class="navbar">
     <div>
         <a href="index.php">
@@ -21,7 +20,6 @@
     <div>
         <h1>Apply for a Job</h1>
         <form id="applicationForm" action="process_eoi.php" method="post" enctype="multipart/form-data" novalidate="novalidate">
-
             <!-- Job title -->
             <div>
                 <label for="jobTitle">Job Title *</label>
