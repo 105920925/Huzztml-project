@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$user = "admin";
-$pwd = "admin";
-$sql_db = "jobs"; // change to your database name
+$user = "root";       // ✅ XAMPP default
+$pwd = "";            // ✅ Leave it empty
+$sql_db = "jobs";     // ✅ Use the database name you created
 ?>
