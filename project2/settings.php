@@ -1,6 +1,7 @@
 <?php
+// settings.php
 $host = "localhost";
-$user = "root";       // ✅ XAMPP default
-$pwd = "";            // ✅ Leave it empty
-$sql_db = "jobs";     // ✅ Use the database name you created
+$user = "root";
+$pwd = "";
+$sql_db = "jobs.sql";
 ?>
