@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 <?php
 require 'db/db_connect.php'; // This brings in the $pdo variable
 
-$stmt = $pdo->query("SELECT * FROM job_openings"); // Now this will work
+$stmt = $pdo->query("SELECT * FROM job_listings"); // pulls listings from db table
 $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Example output
