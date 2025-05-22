@@ -144,6 +144,12 @@ function displayResults($result) {
 
     <hr>
 
+    <form action="/Applications/XAMPP/xamppfiles/htdocs/Huzztml-project/auth/logout.php" method="post">
+        <button type="submit">Logout</button>
+    </form>
+
+    <hr>
+
     <h2>Results:</h2>
     <div>
         <?php echo $output; ?>

@@ -5,7 +5,7 @@ body {
     background-color: #f3f4f6; /* Slightly lighter background for better contrast */
     color: #111827;
     line-height: 1.6;
-    background-image: url('../images/applybackground.jpeg'); /* Updated path */
+    background-image: url('images/applybackground.jpeg'); /* Updated path */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

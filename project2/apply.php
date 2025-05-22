@@ -1,5 +1,6 @@
-<?php include("header.inc"); ?>
-<?php include("menu.inc"); ?>
+<?php include("includes/header.inc"); ?>
+<link rel="stylesheet" href="styles/applystyle.css">
+<?php include("includes/menu.inc"); ?>
 
 <!-- Navigation bar -->
     <nav class="navbar">
@@ -7,7 +8,7 @@
             <!-- Link to the home page -->
             <a href="index.php">
                 <h1>
-                    <img src="../images/logo.png" alt="Logo" onerror="this.onerror=null; this.src='../../images/default-logo.png';">
+                    <img src="styles/images/logo.png" alt="Logo" onerror="this.onerror=null; this.src='../../images/default-logo.png';">
                     Home
                 </h1>
             </a>
@@ -116,6 +117,4 @@
             skillsContainer.appendChild(newSkillDiv);
         });
     </script>
-    <?php include 'footer.inc'; ?>
-
-<?php include("footer.inc"); ?>
+    <?php include("includes/footer.inc"); ?>

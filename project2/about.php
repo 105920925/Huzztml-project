@@ -1,5 +1,6 @@
-<?php include("header.inc"); ?>
-<?php include("menu.inc"); ?>
+<?php include("includes/header.inc"); ?>
+<link rel="stylesheet" href="styles/about.css">
+<?php include("includes/menu.inc"); ?>
 
 <header>
     <h1>Huzztml</h1>
@@ -60,7 +61,7 @@
     <section>
       <h2>Our Team Photo</h2>
       <figure>
-        <img src="../styles/images/group.webp" alt="Group Photo of Huzztml Team" width="3000" />
+        <img src="styles/images/group.webp" alt="Group Photo of Huzztml Team" width="3000" />
         <figcaption>Huzztml Team — April 2025</figcaption>
       </figure>
     </section>
@@ -132,6 +133,4 @@
     </section>
   </main>
 
-  <?php include 'footer.inc'; ?>
-
-<?php include("footer.inc"); ?>
+  <?php include("includes/footer.inc"); ?>
