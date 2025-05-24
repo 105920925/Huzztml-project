@@ -23,7 +23,7 @@
         <li>
           <strong>Group Info:</strong>
           <ul>
-            <li>Class Time: Thursday, 2PM</li>
+            <li>Class Time: Thursday, 12:30PM</li>
             <li>Group Name: Huzztml</li>
             <li>
               <strong>All Members:</strong>
@@ -44,16 +44,20 @@
       <h2>Contributions</h2>
       <dl>
         <dt>Hayyan</dt>
-        <dd>About page, group content, summaries, and structure</dd>
+        <dd>Part1. About page, group content, summaries, and structure</dd>
+        <dd>Part 2. Completed Tasks 7</dd>
 
         <dt>Noah</dt>
-        <dd>Main CSS layout, final design tweaks</dd>
+        <dd>Part 1. Main CSS layout, final design tweaks</dd>
+        <dd>Part 2. Completed Tasks 1,2,6,8 </dd>
 
         <dt>Mujtaba</dt>
-        <dd>Job page and form back-end PHP logic</dd>
+        <dd>Part 1. Job page and form back-end PHP logic</dd>
+        <dd>Part 2. Completed Tasks 3,4,</dd>
 
         <dt>Zan</dt>
-        <dd>Apply page styling and design</dd>
+        <dd>Part 1. Apply page styling and design</dd>
+        <dd>Part 2. Completed Tasks 5</dd>
 
         </dl>
     </section>

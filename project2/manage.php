@@ -100,12 +100,23 @@ function displayResults($result) {
 }
 ?>
 
+<?php
+session_start();
+if (empty($_SESSION['manager_logged_in'])) {
+    header("Location: auth/login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Manage EOIs</title>
+    <title>Manager Dashboard</title>
 </head>
 <body>
+    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['manager_username']); ?></h1>
+    <p>This is the manager-only area.</p>
+    <p><a href="auth/logout.php">Logout</a></p>
+
     <h1>Manage EOIs</h1>
 
     <form method="post">
