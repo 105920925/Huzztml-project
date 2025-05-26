@@ -1,8 +1,6 @@
 <?php
 session_start();
-$managersFile = __DIR__ . '/managers.json';
-if (!file_exists($managersFile)) file_put_contents($managersFile, json_encode([]));
-$managers = json_decode(file_get_contents($managersFile), true);
+require_once("../db/db_connect.php"); // Assumes you have a db_connect.php with $conn
 
 $errors = [];
 $locked = false;
@@ -29,22 +27,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$locked) {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    if (isset($managers[$username]) && password_verify($password, $managers[$username])) {
-        $_SESSION['manager_logged_in'] = true;
-        $_SESSION['manager_username'] = $username;
-        $_SESSION['login_attempts'] = 0;
-        $_SESSION['lockout_start'] = null;
-        header("Location: ../manage.php");
-        exit;
-    } else {
-        $_SESSION['login_attempts']++;
-        $errors[] = "Invalid username or password.";
-        if ($_SESSION['login_attempts'] >= 3) {
-            $_SESSION['lockout_start'] = time();
-            $locked = true;
-            $remaining = $lockoutTime;
+    $stmt = $conn->prepare("SELECT password_hash FROM managers WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows === 1) {
+        $stmt->bind_result($hash);
+        $stmt->fetch();
+        if (password_verify($password, $hash)) {
+            $_SESSION['manager_logged_in'] = true;
+            $_SESSION['manager_username'] = $username;
+            $_SESSION['login_attempts'] = 0;
+            $_SESSION['lockout_start'] = null;
+            header("Location: ../manage.php");
+            exit;
         }
     }
+    $_SESSION['login_attempts']++;
+    $errors[] = "Invalid username or password.";
+    if ($_SESSION['login_attempts'] >= 3) {
+        $_SESSION['lockout_start'] = time();
+        $locked = true;
+        $remaining = $lockoutTime;
+    }
+    $stmt->close();
 }
 ?>
 <!DOCTYPE html>

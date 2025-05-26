@@ -3,9 +3,8 @@ session_start();
 $errors = [];
 $success = false;
 
-// Simple file-based storage for demonstration
-$managersFile = __DIR__ . '/managers.json';
-if (!file_exists($managersFile)) file_put_contents($managersFile, json_encode([]));
+// Database connection
+require_once("../db/db_connect.php"); // Assumes you have a db_connect.php with $conn
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
@@ -14,19 +13,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Password rule: at least 8 chars, 1 uppercase, 1 lowercase, 1 digit
     $passwordRule = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/';
 
-    $managers = json_decode(file_get_contents($managersFile), true);
-
     if ($username === '' || $password === '') {
         $errors[] = "Username and password are required.";
-    } elseif (isset($managers[$username])) {
-        $errors[] = "Username already exists.";
     } elseif (!preg_match($passwordRule, $password)) {
         $errors[] = "Password must be at least 8 characters, include an uppercase letter, a lowercase letter, and a digit.";
     } else {
-        // Store hashed password
-        $managers[$username] = password_hash($password, PASSWORD_DEFAULT);
-        file_put_contents($managersFile, json_encode($managers));
-        $success = true;
+        // Check if username exists
+        $stmt = $conn->prepare("SELECT id FROM managers WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows > 0) {
+            $errors[] = "Username already exists.";
+        } else {
+            // Insert new manager
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $conn->prepare("INSERT INTO managers (username, password_hash) VALUES (?, ?)");
+            $stmt->bind_param("ss", $username, $hash);
+            if ($stmt->execute()) {
+                $success = true;
+            } else {
+                $errors[] = "Registration failed. Please try again.";
+            }
+        }
+        $stmt->close();
     }
 }
 ?>

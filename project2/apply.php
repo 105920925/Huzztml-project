@@ -154,23 +154,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<?php include("includes/header.inc"); ?>
+<?php include("inclusions/header.inc"); ?>
 <link rel="stylesheet" href="styles/applystyle.css">
-<?php include("includes/menu.inc"); ?>
-
-<nav class="navbar">
-    <div>
-        <a href="index.php">
-            <h1>
-                <img src="styles/images/logo.png" alt="Logo" onerror="this.onerror=null; this.src='../../images/default-logo.png';">
-                Home
-            </h1>
-        </a>
-        <a href="jobs.php">
-            <span>Back to Jobs</span>
-        </a>
-    </div>
-</nav>
+<?php include("inclusions/menu.inc"); ?>
 
 <main>
     <div>
@@ -286,4 +272,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </main>
 
-<?php include("includes/footer.inc"); ?>
+<?php include("inclusions/footer.inc"); ?>

@@ -1,14 +1,11 @@
 <?php
-// Define $pdo in the global scope
-$host = 'localhost';
-$dbname = 'jobs';
-$username = 'root';
-$password = ''; // Default password for XAMPP is blank
+$host = "localhost";
+$user = "your_db_username";
+$pass = "your_db_password";
+$dbname = "jobs";
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+$conn = new mysqli($host, $user, $pass, $dbname);
+if ($conn->connect_error) {
+    die("Database connection failed: " . $conn->connect_error);
 }
 ?>
