@@ -4,9 +4,10 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit();
 }
 
-require_once("settings.php");
+require_once("db/settings.php"); // uses $host, $user, $pass, $dbname
 
-$conn = mysqli_connect($host, $user, $pwd, $sql_db);
+// Connect using MySQLi with the variables from settings.php
+$conn = mysqli_connect($host, $user, $pass, $dbname);
 if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
 }
@@ -154,7 +155,7 @@ if (!empty($errors)) {
         $eoi_id = mysqli_insert_id($conn);
 
         if (!empty($skills)) {
-            $skill_insert_query = "INSERT INTO eoi_skills (eoi_id, skill_name) VALUES (?, ?)";
+            $skill_insert_query = "INSERT INTO eoi_skills (EOInumber, skill_name) VALUES (?, ?)";
             $skill_stmt = mysqli_prepare($conn, $skill_insert_query);
 
             foreach ($skills as $skill) {
