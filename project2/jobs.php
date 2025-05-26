@@ -19,7 +19,7 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Listings</title>
     <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="../project2/styles/jobs.css"> 
+    <link rel="stylesheet" href="styles/jobs.css"> 
 </head>
 <body>
 

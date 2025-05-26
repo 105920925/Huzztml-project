@@ -1,11 +1,6 @@
 <?php include("includes/header.inc"); ?>
-<link rel="stylesheet" href="styles/about.css">
 <?php include("includes/menu.inc"); ?>
-
-<header>
-    <h1>Huzztml</h1>
-</header>
-
+<link rel="stylesheet" href="styles/about.css">
 <main>
     <section>
       <h2>Group Profile</h2>

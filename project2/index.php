@@ -1,9 +1,8 @@
 <?php include("includes/header.inc"); ?>
+<?php include("includes/menu.inc"); ?>
 
 <!-- Correct way to link CSS -->
 <link rel="stylesheet" href="styles/indexstyles.css">
-
-<?php include("includes/menu.inc"); ?>
 
 <header>
     <div class="header-content">

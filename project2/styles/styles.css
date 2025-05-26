@@ -1,7 +1,6 @@
 /* Header styles */
 header {
     text-align: center;
-    background-image: url('images/interviewpic.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -10,7 +9,7 @@ header {
 }
 
 .header-content {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background for better readability */
     padding: 20px;
     border-radius: 10px;
     display: inline-block;
@@ -26,6 +25,37 @@ header h1 {
 header p {
     margin: 10px 0 0;
     font-size: 1.2em;
+}
+
+/* Header image styles */
+header img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Company description and logo styles */
+header div img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Retain shadow for better appearance */
+    border: none; /* Remove yellow border */
+}
+
+header div p {
+    text-align: center;
+    font-size: 1.1em;
+    color: #f0f0f0;
+    margin-top: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Navigation styles */
@@ -53,8 +83,8 @@ nav ul {
     display: flex;
     gap: 20px;
     justify-content: center;
-    background: #f8f8f8;
-    border-bottom: 1px solid #e0e0e0;
+    background: #0066cc;
+    border-bottom: 1px solid #0066cc;
 }
 
 nav ul li {
@@ -64,7 +94,7 @@ nav ul li {
 nav ul li a {
     display: block;
     padding: 14px 20px;
-    color: #333;
+    color: white;
     text-decoration: none;
     font-weight: 500;
     transition: background 0.2s, color 0.2s;
