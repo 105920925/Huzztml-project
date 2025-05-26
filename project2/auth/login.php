@@ -62,22 +62,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$locked) {
 <html>
 <head>
     <title>Manager Login</title>
+    <link rel="stylesheet" href="styles/loginstyles.css">
 </head>
 <body>
-    <h1>Manager Login</h1>
-    <?php
-    foreach ($errors as $e) echo "<p style='color:red;'>$e</p>";
-    if ($locked) {
-        echo "<p style='color:red;'>Too many failed attempts. Please try again in " . ceil($remaining/60) . " minute(s).</p>";
-    }
-    ?>
-    <?php if (!$locked): ?>
-    <form method="post">
-        <label>Username: <input type="text" name="username" required></label><br>
-        <label>Password: <input type="password" name="password" required></label><br>
-        <button type="submit">Login</button>
-    </form>
-    <?php endif; ?>
-    <p><a href="register.php">Register as manager</a></p>
+    <div class="login-container">
+        <h1>Manager Login</h1>
+        <?php
+        foreach ($errors as $e) echo "<p style='color:red;'>$e</p>";
+        if ($locked) {
+            echo "<p style='color:red;'>Too many failed attempts. Please try again in " . ceil($remaining/60) . " minute(s).</p>";
+        }
+        ?>
+        <?php if (!$locked): ?>
+        <form method="post">
+            <label>Username: <input type="text" name="username" required></label><br>
+            <label>Password: <input type="password" name="password" required></label><br>
+            <button type="submit">Login</button>
+        </form>
+        <?php endif; ?>
+        <p><a href="register.php">Register as manager</a></p>
+    </div>
 </body>
 </html>

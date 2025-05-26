@@ -49,6 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Manager Registration</title>
+    <link rel="stylesheet" href="styles/registerstyle.css">
+
 </head>
 <body>
     <h1>Register Manager Account</h1>
