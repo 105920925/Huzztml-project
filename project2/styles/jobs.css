@@ -4,7 +4,7 @@ header {
     background-image: url('images/interviewpic.jpg'); /* Ensure this path is correct */
     background-size: cover;
     background-position: center;
-    color: white;
+    color: #0066cc;
     padding: 60px 10px;
     position: relative;
 }
@@ -52,7 +52,7 @@ header div img {
 header div p {
     text-align: center;
     font-size: 1.1em;
-    color: #f0f0f0;
+    color: #0066cc;
     margin-top: 10px;
     max-width: 800px;
     margin-left: auto;
@@ -272,4 +272,21 @@ footer p {
     .floating-apply {
         display: none;
     }
+}
+
+/* === Footer === */
+footer {
+    background-color: #003d66;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer a {
+    color: #aadfff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }

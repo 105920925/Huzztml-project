@@ -24,7 +24,7 @@ header {
     background-image: url('images/interviewpic.jpg'); /* Ensure this path is correct */
     background-size: cover;
     background-position: center;
-    color: white;
+    color: #0066cc;
     padding: 60px 10px;
     position: relative;
 }
