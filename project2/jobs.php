@@ -111,7 +111,7 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="floating-apply">
     <input type="checkbox" id="toggle-apply" class="toggle-apply-checkbox">
     <label for="toggle-apply" class="toggle-apply-header">
-        💼 Why Join Us? <span class="toggle-icon">+</span>
+        💼 Why Join Us? <span class="toggle-icon"></span>
     </label>
 
     <div class="apply-content">
