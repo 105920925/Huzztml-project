@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 $host = "localhost";
 $user = "root";       // change if needed
 $pass = "";           // change if needed
-$dbname = "eoi";  // change to your DB name
+$dbname = "jobs";     // change to your DB name
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 if (!$conn) {
