@@ -24,17 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // List all EOIs
         if ($action === "list_all") {
-            $sql = "SELECT * FROM eoi";
+            $sql = "SELECT * FROM job_listings";
             $result = mysqli_query($conn, $sql);
             $output = displayResults($result);
         }
 
-        // List by job reference
-        elseif ($action === "list_by_job" && !empty($_POST["job_ref"])) {
-            $job_ref = $_POST["job_ref"];
-            $sql = "SELECT * FROM eoi WHERE job_ref=?";
+        // List by reference code
+        elseif ($action === "list_by_job" && !empty($_POST["reference_code"])) {
+            $reference_code = $_POST["reference_code"];
+            $sql = "SELECT * FROM eoi WHERE reference_code=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $job_ref);
+            $stmt->bind_param("s", $reference_code);
             $stmt->execute();
             $result = $stmt->get_result();
             $output = displayResults($result);
@@ -54,14 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $output = displayResults($result);
         }
 
-        // Delete by job ref
-        elseif ($action === "delete_by_job" && !empty($_POST["job_ref"])) {
-            $job_ref = $_POST["job_ref"];
-            $sql = "DELETE FROM eoi WHERE job_ref=?";
+        // Delete by reference code
+        elseif ($action === "delete_by_job" && !empty($_POST["reference_code"])) {
+            $reference_code = $_POST["reference_code"];
+            $sql = "DELETE FROM eoi WHERE reference_code=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $job_ref);
+            $stmt->bind_param("s", $reference_code);
             $stmt->execute();
-            $output = "Deleted all EOIs for job reference: $job_ref";
+            $output = "Deleted all EOIs for reference code: $reference_code";
         }
 
         // Update EOI status
@@ -138,12 +138,22 @@ if (empty($_SESSION['manager_logged_in'])) {
                 <hr>
 
                 <form method="post">
-                    <label>Job Reference:
-                        <select name="job_ref" required>
+                    <label>Reference Code:
+                        <select name="reference_code" required>
                             <option value="">Select a Job</option>
-                            <option value="J001">J001</option>
-                            <option value="J002">J002</option>
-                            <option value="J003">J003</option>
+                            <?php
+                            // Fetch reference codes from the database
+                            $query = "SELECT reference_code FROM job_listings";
+                            $result = mysqli_query($conn, $query);
+
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value=\"" . htmlspecialchars($row['reference_code']) . "\">" . htmlspecialchars($row['reference_code']) . "</option>";
+                                }
+                            } else {
+                                echo "<option value=\"\">No jobs available</option>";
+                            }
+                            ?>
                         </select>
                     </label>
                     <button name="action" value="list_by_job">List EOIs by Job</button>
