@@ -115,6 +115,7 @@ if (empty($_SESSION['manager_logged_in'])) {
 <html>
 <head>
     <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="styles/manage.css">
 </head>
 <body>
     <h1>Welcome, <?php echo htmlspecialchars($_SESSION['manager_username']); ?></h1>
