@@ -63,6 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$locked) {
 <head>
     <title>Manager Login</title>
     <link rel="stylesheet" href="../styles/loginstyles.css">
+    <style>
+        body {
+            background-image: url('../styles/images/login.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
