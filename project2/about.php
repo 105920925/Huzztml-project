@@ -45,7 +45,7 @@
       <dl>
         <dt>Hayyan</dt>
         <dd>Part1. About page, group content, summaries, and structure</dd>
-        <dd>Part 2. Completed Tasks 7</dd>
+        <dd>Part 2. Completed Tasks 7,9</dd>
 
         <dt>Noah</dt>
         <dd>Part 1. Main CSS layout, final design tweaks</dd>
