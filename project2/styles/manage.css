@@ -7,20 +7,83 @@ body {
     margin: 20px;
     background-color: #f9f9f9;
 }
-
+/* Header styles */
 header {
-    background-color: transparent; /* Set background to transparent */
-    color: #333; /* Adjust text color if needed */
-    padding: 10px 20px;
     text-align: center;
-    background-image: none; /* Ensure no background image */
+    background-image: url('images/interviewpic.jpg'); /* Ensure this path is correct */
+    background-size: cover;
+    background-position: center;
+    color: #0066cc;
+    padding: 60px 10px;
+    position: relative;
 }
 
+.header-content {
+    background-color: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background for better readability */
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+header p {
+    margin: 10px 0 0;
+    font-size: 1.2em;
+}
+
+/* Header image styles */
+header img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Company description and logo styles */
+header div img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Retain shadow for better appearance */
+    border: none; /* Remove yellow border */
+}
+
+header div p {
+    text-align: center;
+    font-size: 1.1em;
+    color: #0066cc;
+    margin-top: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Navigation styles */
 nav {
-    background-color: #333; /* Black background for the banner */
-    padding: 20px 0; /* Add padding to make it taller */
-    position: relative;
-    z-index: 2; /* Ensure it appears above the header */
+    background-color: #0066cc;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.1em;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 nav ul {
@@ -30,7 +93,8 @@ nav ul {
     display: flex;
     gap: 20px;
     justify-content: center;
-    background-color: #333; /* Black background for the banner */
+    background: #0066cc;
+    border-bottom: 1px solid #0066cc;
 }
 
 nav ul li {
@@ -38,14 +102,19 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white; /* Ensure text is visible on the black background */
+    display: block;
+    padding: 14px 20px;
+    color: white;
     text-decoration: none;
-    padding: 10px 15px;
-    display: inline-block;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
 }
 
-nav ul li a:hover {
-    background-color: #575757; /* Slightly lighter hover effect */
+nav ul li a:hover,
+nav ul li a.active {
+    background: #0077cc;
+    color: #fff;
+    border-radius: 4px;
 }
 
 h1 {
