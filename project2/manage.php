@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 $host = "localhost";
 $user = "root";       // change if needed
 $pass = "";           // change if needed
-$dbname = "jobs";     // change to your DB name
+$dbname = "jobs";  // change to your DB name
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 if (!$conn) {
@@ -107,15 +107,10 @@ if (empty($_SESSION['manager_logged_in'])) {
     exit;
 }
 ?>
-
-<?php include 'includes/header.inc'; ?>
-<?php include 'includes/menu.inc'; ?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Manager Dashboard</title>
-    <link rel="stylesheet" href="styles/manage.css">
 </head>
 <body>
     <h1>Welcome, <?php echo htmlspecialchars($_SESSION['manager_username']); ?></h1>
@@ -172,5 +167,3 @@ if (empty($_SESSION['manager_logged_in'])) {
     </div>
 </body>
 </html>
-
-<?php include 'includes/footer.inc'; ?>
