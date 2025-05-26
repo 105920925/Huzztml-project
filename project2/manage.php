@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // List by job reference
-        elseif ($action === "list_by_job") {
+        elseif ($action === "list_by_job" && !empty($_POST["job_ref"])) {
             $job_ref = $_POST["job_ref"];
             $sql = "SELECT * FROM eoi WHERE job_ref=?";
             $stmt = $conn->prepare($sql);
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // List by name
-        elseif ($action === "list_by_name") {
+        elseif ($action === "list_by_name" && (!empty($_POST["first_name"]) || !empty($_POST["last_name"]))) {
             $fname = $_POST["first_name"];
             $lname = $_POST["last_name"];
             $sql = "SELECT * FROM eoi WHERE first_name LIKE ? OR last_name LIKE ?";
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Delete by job ref
-        elseif ($action === "delete_by_job") {
+        elseif ($action === "delete_by_job" && !empty($_POST["job_ref"])) {
             $job_ref = $_POST["job_ref"];
             $sql = "DELETE FROM eoi WHERE job_ref=?";
             $stmt = $conn->prepare($sql);
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Update EOI status
-        elseif ($action === "update_status") {
+        elseif ($action === "update_status" && !empty($_POST["eoi_id"]) && !empty($_POST["status"])) {
             $eoi_id = $_POST["eoi_id"];
             $new_status = $_POST["status"];
             $sql = "UPDATE eoi SET status=? WHERE eoi_id=?";
@@ -73,6 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->bind_param("si", $new_status, $eoi_id);
             $stmt->execute();
             $output = "Updated status of EOI ID $eoi_id to '$new_status'";
+        } else {
+            $output = "Invalid input or missing fields.";
         }
     }
 }
@@ -107,63 +109,75 @@ if (empty($_SESSION['manager_logged_in'])) {
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Manager Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="styles/manage.css">
 </head>
 <body>
-    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['manager_username']); ?></h1>
-    <p>This is the manager-only area.</p>
-    <p><a href="auth/logout.php">Logout</a></p>
+    <?php include 'includes/header.inc'; ?>
+    <?php include 'includes/menu.inc'; ?>
 
-    <h1>Manage EOIs</h1>
-
-    <form method="post">
-        <button name="action" value="list_all">List All EOIs</button>
-    </form>
-
-    <hr>
-
-    <form method="post">
-        <label>Job Reference:
-            <select name="job_ref">
-                <option value="J001">J001</option>
-                <option value="J002">J002</option>
-                <option value="J003">J003</option>
-            </select>
-        </label>
-        <button name="action" value="list_by_job">List EOIs by Job</button>
-        <button name="action" value="delete_by_job">Delete EOIs by Job</button>
-    </form>
-
-    <hr>
-
-    <form method="post">
-        <label>First Name: <input type="text" name="first_name" maxlength="20"></label>
-        <label>Last Name: <input type="text" name="last_name" maxlength="20"></label>
-        <button name="action" value="list_by_name">List EOIs by Name</button>
-    </form>
-
-    <hr>
-
-    <form method="post">
-        <label>EOI ID: <input type="number" name="eoi_id" required></label>
-        <label>Status: <input type="text" name="status" required></label>
-        <button name="action" value="update_status">Update Status</button>
-    </form>
-
-    <hr>
-
-    <form action="/Applications/XAMPP/xamppfiles/htdocs/Huzztml-project/auth/logout.php" method="post">
-        <button type="submit">Logout</button>
-    </form>
-
-    <hr>
-
-    <h2>Results:</h2>
-    <div>
-        <?php echo $output; ?>
+    <div class="box manager-area">
+        <h1>Welcome, <?php echo htmlspecialchars($_SESSION['manager_username']); ?></h1>
+        <p>This is the manager-only area.</p>
+        <a href="index.php" class="logout-button">Logout</a>
     </div>
+
+    <div class="container">
+        <div class="left-column">
+            <div class="box">
+                <h1>Manage EOIs</h1>
+
+                <form method="post">
+                    <button name="action" value="list_all">List All EOIs</button>
+                </form>
+
+                <hr>
+
+                <form method="post">
+                    <label>Job Reference:
+                        <select name="job_ref" required>
+                            <option value="">Select a Job</option>
+                            <option value="J001">J001</option>
+                            <option value="J002">J002</option>
+                            <option value="J003">J003</option>
+                        </select>
+                    </label>
+                    <button name="action" value="list_by_job">List EOIs by Job</button>
+                    <button name="action" value="delete_by_job">Delete EOIs by Job</button>
+                </form>
+
+                <hr>
+
+                <form method="post">
+                    <label>First Name: <input type="text" name="first_name" maxlength="20"></label>
+                    <label>Last Name: <input type="text" name="last_name" maxlength="20"></label>
+                    <button name="action" value="list_by_name">List EOIs by Name</button>
+                </form>
+
+                <hr>
+
+                <form method="post">
+                    <label>EOI ID: <input type="number" name="eoi_id" required></label>
+                    <label>Status: <input type="text" name="status" required></label>
+                    <button name="action" value="update_status">Update Status</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <div class="box">
+                <h2>Results:</h2>
+                <div>
+                    <?php echo $output; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php include 'includes/footer.inc'; ?>
 </body>
 </html>

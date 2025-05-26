@@ -1,0 +1,147 @@
+/* Import styles from indexstyles.css if applicable */
+@import url('../styles/indexstyles.css');
+
+/* Example styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: transparent; /* Set background to transparent */
+    color: #333; /* Adjust text color if needed */
+    padding: 10px 20px;
+    text-align: center;
+    background-image: none; /* Ensure no background image */
+}
+
+nav {
+    background-color: #333; /* Black background for the banner */
+    padding: 20px 0; /* Add padding to make it taller */
+    position: relative;
+    z-index: 2; /* Ensure it appears above the header */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    background-color: #333; /* Black background for the banner */
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white; /* Ensure text is visible on the black background */
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #575757; /* Slightly lighter hover effect */
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.left-column {
+    flex: 1;
+    max-width: 60%;
+}
+
+.right-column {
+    flex: 1;
+    max-width: 40%;
+    border-left: 1px solid #ddd;
+    padding-left: 20px;
+}
+
+.manager-area {
+    text-align: center;
+    margin: 20px auto;
+    width: 50%; /* Adjust the width as needed */
+}
+
+.logout-button {
+    display: inline-block;
+    background-color: #FF0000; /* Red background */
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.logout-button:hover {
+    background-color: #CC0000; /* Darker red on hover */
+}
+
+.box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
