@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 ?>
 
 <?php
-require 'db/db_connect.php'; // This brings in the $pdo variable
+require 'db/settings.php'; // This brings in the $pdo variable
 
 // Query the job_listings table to get all job openings
 $stmt = $pdo->query("SELECT * FROM job_listings"); // Use the correct table name

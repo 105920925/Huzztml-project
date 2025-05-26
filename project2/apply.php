@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 <?php
 // Include the database connection
-require 'db/db_connect.php';
+require 'db/settings.php';
 
 // Query the job_listings table to get all job titles or reference codes
 $stmt = $pdo->query("SELECT title, reference_code FROM job_listings");
