@@ -4,18 +4,9 @@
 
 <header>
     <h1>Huzztml</h1>
-    <nav>
-      <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="jobs.php">Positions</a></li>
-        <li><a href="apply.php">Apply</a></li>
-        <li><a href="about.php" class="active">About</a></li>
-        <li><a href="mailto:info@huzztml.com">Email</a></li>
-      </ul>
-    </nav>
-  </header>
+</header>
 
-  <main>
+<main>
     <section>
       <h2>Group Profile</h2>
       <p>We are <strong>Huzztml</strong>, a group of creative students from the Thursday 12:30PM class working together to build a complete recruitment website.</p>

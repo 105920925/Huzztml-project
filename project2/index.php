@@ -18,11 +18,6 @@
     </div>
 </header>
 
-<nav>
-    <a href="jobs.php">Jobs</a>
-    <a href="about.php">About Us</a>
-</nav>
-
 <section>
     <h1>&#8226; Find Your Next Opportunity</h1>
     <p class="intro-text">&#9702; Search thousands of job listings and apply online today!</p>

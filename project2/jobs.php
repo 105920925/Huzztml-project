@@ -23,8 +23,8 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-<?php include 'includes/header.inc'; ?> <!-- Including header part -->
-<?php include 'includes/menu.inc'; ?> <!-- Including navigation bar -->
+<?php include("inclusions/header.inc"); ?>
+<?php include("inclusions/menu.inc"); ?>
 
 <main class="container">
 
@@ -130,4 +130,6 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 </main>
 
-<?php include 'includes/footer.inc'; ?> <!-- Including footer part -->
+<?php include("inclusions/footer.inc"); ?>
+</body>
+</html>
