@@ -107,6 +107,10 @@ if (empty($_SESSION['manager_logged_in'])) {
     exit;
 }
 ?>
+
+<?php include 'includes/header.inc'; ?>
+<?php include 'includes/menu.inc'; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,3 +171,5 @@ if (empty($_SESSION['manager_logged_in'])) {
     </div>
 </body>
 </html>
+
+<?php include 'includes/footer.inc'; ?>
