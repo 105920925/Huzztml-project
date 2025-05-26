@@ -118,9 +118,9 @@ footer {
 }
 
 .right-column table {
-    width: 50%; /* Further reduce the table width */
+    width: 45%; /* Slightly reduce the table width */
     margin: 0 auto; /* Center the table */
-    font-size: 0.8em; /* Decrease the font size */
+    font-size: 0.75em; /* Slightly reduce the font size */
     overflow-x: auto; /* Ensure horizontal scrolling if needed */
     word-wrap: break-word; /* Prevent content from overflowing */
 }
