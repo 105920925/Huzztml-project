@@ -99,20 +99,30 @@ footer {
 
 .container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Stack columns vertically */
     gap: 20px;
 }
 
 .left-column {
     flex: 1;
-    max-width: 60%;
+    max-width: 100%; /* Adjust to full width */
 }
 
 .right-column {
     flex: 1;
-    max-width: 40%;
-    border-left: 1px solid #ddd;
-    padding-left: 20px;
+    max-width: 100%; /* Adjust to full width */
+    border-left: none; /* Remove border since it's now at the bottom */
+    padding-left: 0; /* Remove padding */
+    border-top: 1px solid #ddd; /* Add a top border for separation */
+    padding-top: 20px;
+}
+
+.right-column table {
+    width: 50%; /* Further reduce the table width */
+    margin: 0 auto; /* Center the table */
+    font-size: 0.8em; /* Decrease the font size */
+    overflow-x: auto; /* Ensure horizontal scrolling if needed */
+    word-wrap: break-word; /* Prevent content from overflowing */
 }
 
 .manager-area {
