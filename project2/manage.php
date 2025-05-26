@@ -24,17 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // List all EOIs
         if ($action === "list_all") {
-            $sql = "SELECT * FROM job_listings";
+            $sql = "SELECT * FROM eoi";
             $result = mysqli_query($conn, $sql);
             $output = displayResults($result);
         }
 
         // List by reference code
-        elseif ($action === "list_by_job" && !empty($_POST["reference_code"])) {
-            $reference_code = $_POST["reference_code"];
-            $sql = "SELECT * FROM eoi WHERE reference_code=?";
+        elseif ($action === "list_by_job" && !empty($_POST["JobReferenceNumber"])) {
+            $JobReferenceNumber = $_POST["JobReferenceNumber"];
+            $sql = "SELECT * FROM eoi WHERE JobReferenceNumber=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $reference_code);
+            $stmt->bind_param("s", $JobReferenceNumber);
             $stmt->execute();
             $result = $stmt->get_result();
             $output = displayResults($result);
@@ -65,10 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Update EOI status
-        elseif ($action === "update_status" && !empty($_POST["eoi_id"]) && !empty($_POST["status"])) {
+        elseif ($action === "update_status" && !empty($_POST["eoi_id"]) && isset($_POST["status"])) {
             $eoi_id = $_POST["eoi_id"];
             $new_status = $_POST["status"];
-            $sql = "UPDATE eoi SET status=? WHERE eoi_id=?";
+            $sql = "UPDATE eoi SET Status=? WHERE EOInumber=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("si", $new_status, $eoi_id);
             $stmt->execute();
@@ -163,15 +163,66 @@ if (empty($_SESSION['manager_logged_in'])) {
                 <hr>
 
                 <form method="post">
-                    <label>First Name: <input type="text" name="first_name" maxlength="20"></label>
-                    <label>Last Name: <input type="text" name="last_name" maxlength="20"></label>
+                    <label>First Name:
+                        <select name="first_name">
+                            <option value="">Select First Name</option>
+                            <?php
+                            // Fetch distinct first names from the database
+                            $query = "SELECT DISTINCT FirstName FROM eoi";
+                            $result = mysqli_query($conn, $query);
+
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value=\"" . htmlspecialchars($row['FirstName']) . "\">" . htmlspecialchars($row['FirstName']) . "</option>";
+                                }
+                            } else {
+                                echo "<option value=\"\">No first names available</option>";
+                            }
+                            ?>
+                        </select>
+                    </label>
+                    <label>Last Name:
+                        <select name="last_name">
+                            <option value="">Select Last Name</option>
+                            <?php
+                            // Fetch distinct last names from the database
+                            $query = "SELECT DISTINCT LastName FROM eoi";
+                            $result = mysqli_query($conn, $query);
+
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value=\"" . htmlspecialchars($row['LastName']) . "\">" . htmlspecialchars($row['LastName']) . "</option>";
+                                }
+                            } else {
+                                echo "<option value=\"\">No last names available</option>";
+                            }
+                            ?>
+                        </select>
+                    </label>
                     <button name="action" value="list_by_name">List EOIs by Name</button>
                 </form>
 
                 <hr>
 
                 <form method="post">
-                    <label>EOI ID: <input type="number" name="eoi_id" required></label>
+                    <label>EOI ID:
+                        <select name="eoi_id" required>
+                            <option value="">Select EOI ID</option>
+                            <?php
+                            // Fetch distinct EOI IDs from the database
+                            $query = "SELECT DISTINCT EOInumber FROM eoi";
+                            $result = mysqli_query($conn, $query);
+
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value=\"" . htmlspecialchars($row['EOInumber']) . "\">" . htmlspecialchars($row['EOInumber']) . "</option>";
+                                }
+                            } else {
+                                echo "<option value=\"\">No EOI IDs available</option>";
+                            }
+                            ?>
+                        </select>
+                    </label>
                     <label>Status: <input type="text" name="status" required></label>
                     <button name="action" value="update_status">Update Status</button>
                 </form>
