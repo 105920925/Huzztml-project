@@ -41,38 +41,111 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // List by name
-        elseif ($action === "list_by_name" && (!empty($_POST["FirstName"]) || !empty($_POST["LastName"]))) {
-            $fname = $_POST["FirstName"];
-            $lname = $_POST["LastName"];
-            $sql = "SELECT * FROM eoi WHERE FirstName LIKE ? OR LastName LIKE ?";
-            $stmt = $conn->prepare($sql);
-            $fname = "%$fname%";
-            $lname = "%$lname%";
-            $stmt->bind_param("ss", $fname, $lname);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $output = displayResults($result);
+        elseif ($action === "list_by_name") {
+            $fname = !empty($_POST["FirstName"]) ? $_POST["FirstName"] : null;
+            $lname = !empty($_POST["LastName"]) ? $_POST["LastName"] : null;
+
+            if ($fname || $lname) {
+                $sql = "SELECT * FROM eoi WHERE 1=1";
+                $params = [];
+                $types = "";
+
+                if ($fname) {
+                    $sql .= " AND FirstName LIKE ?";
+                    $params[] = "%$fname%";
+                    $types .= "s";
+                }
+
+                if ($lname) {
+                    $sql .= " AND LastName LIKE ?";
+                    $params[] = "%$lname%";
+                    $types .= "s";
+                }
+
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param($types, ...$params);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($lname) {
+                    // Validate if the last name exists in the database
+                    $validation_sql = "SELECT COUNT(*) AS count FROM eoi WHERE LastName LIKE ?";
+                    $validation_stmt = $conn->prepare($validation_sql);
+                    $validation_stmt->bind_param("s", $params[array_search("%$lname%", $params)]);
+                    $validation_stmt->execute();
+                    $validation_result = $validation_stmt->get_result();
+                    $validation_row = $validation_result->fetch_assoc();
+
+                    if ($validation_row['count'] == 0) {
+                        $output = "⚠️ Invalid input: Last name does not match any records.";
+                    } else {
+                        $output = displayResults($result);
+                    }
+                } else {
+                    $output = displayResults($result);
+                }
+            } else {
+                $output = "⚠️ Please enter at least a first name or last name to search.";
+            }
         }
 
-        // Delete by reference code
-        elseif ($action === "delete_by_job" && !empty($_POST["reference_code"])) {
-            $reference_code = $_POST["reference_code"];
-            $sql = "DELETE FROM eoi WHERE reference_code=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $reference_code);
+        // Delete EOIs by JobReferenceNumber
+        elseif ($action === "delete_by_job" && !empty($_POST["JobReferenceNumber"])) {
+            $JobReferenceNumber = $_POST["JobReferenceNumber"];
+
+            // First, fetch the EOInumbers related to the JobReferenceNumber
+            $stmt = $conn->prepare("SELECT EOInumber FROM eoi WHERE JobReferenceNumber=?");
+            $stmt->bind_param("s", $JobReferenceNumber);
             $stmt->execute();
-            $output = "Deleted all EOIs for reference code: $reference_code";
+            $result = $stmt->get_result();
+
+            $eoi_ids = [];
+            while ($row = $result->fetch_assoc()) {
+                $eoi_ids[] = $row['EOInumber'];
+            }
+
+            if (count($eoi_ids) > 0) {
+                // Delete from eoi_skills first (child table)
+                $in_clause = implode(',', array_fill(0, count($eoi_ids), '?'));
+                $types = str_repeat('i', count($eoi_ids)); // assuming EOInumber is int
+                $stmt_skills = $conn->prepare("DELETE FROM eoi_skills WHERE EOInumber IN ($in_clause)");
+                $stmt_skills->bind_param($types, ...$eoi_ids);
+                $stmt_skills->execute();
+
+                // Then delete from eoi table (parent table)
+                $stmt_eoi = $conn->prepare("DELETE FROM eoi WHERE JobReferenceNumber=?");
+                $stmt_eoi->bind_param("s", $JobReferenceNumber);
+                $stmt_eoi->execute();
+
+                $output = "✅ Successfully deleted EOIs and related skills for job reference: <strong>$JobReferenceNumber</strong>.";
+            } else {
+                $output = "⚠️ No EOIs found with job reference: <strong>$JobReferenceNumber</strong>.";
+            }
         }
 
         // Update EOI status
         elseif ($action === "update_status" && !empty($_POST["eoi_id"]) && isset($_POST["status"])) {
             $eoi_id = $_POST["eoi_id"];
             $new_status = $_POST["status"];
-            $sql = "UPDATE eoi SET Status=? WHERE EOInumber=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("si", $new_status, $eoi_id);
-            $stmt->execute();
-            $output = "Updated status of EOI ID $eoi_id to '$new_status'";
+
+            // Validate if the EOI ID exists in the database
+            $validation_sql = "SELECT COUNT(*) AS count FROM eoi WHERE EOInumber = ?";
+            $validation_stmt = $conn->prepare($validation_sql);
+            $validation_stmt->bind_param("i", $eoi_id);
+            $validation_stmt->execute();
+            $validation_result = $validation_stmt->get_result();
+            $validation_row = $validation_result->fetch_assoc();
+
+            if ($validation_row['count'] > 0) {
+                // Update the status in the database
+                $sql = "UPDATE eoi SET Status=? WHERE EOInumber=?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("si", $new_status, $eoi_id);
+                $stmt->execute();
+                $output = "✅ Updated status of EOI ID $eoi_id to '$new_status'.";
+            } else {
+                $output = "⚠️ Invalid input: EOI ID does not exist.";
+            }
         } else {
             $output = "Invalid input or missing fields.";
         }
@@ -139,7 +212,7 @@ if (empty($_SESSION['manager_logged_in'])) {
 
                 <form method="post">
                     <label>Reference Code:
-                        <select name="reference_code" required>
+                        <select name="JobReferenceNumber" required>
                             <option value="">Select a Job</option>
                             <?php
                             // Fetch reference codes from the database
@@ -163,67 +236,23 @@ if (empty($_SESSION['manager_logged_in'])) {
                 <hr>
 
                 <form method="post">
-                    <label>First Name:
-                        <select name="first_name">
-                            <option value="">Select First Name</option>
-                            <?php
-                            // Fetch distinct first names from the database
-                            $query = "SELECT DISTINCT FirstName FROM eoi";
-                            $result = mysqli_query($conn, $query);
-
-                            if ($result && mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value=\"" . htmlspecialchars($row['FirstName']) . "\">" . htmlspecialchars($row['FirstName']) . "</option>";
-                                }
-                            } else {
-                                echo "<option value=\"\">No first names available</option>";
-                            }
-                            ?>
-                        </select>
-                    </label>
-                    <label>Last Name:
-                        <select name="last_name">
-                            <option value="">Select Last Name</option>
-                            <?php
-                            // Fetch distinct last names from the database
-                            $query = "SELECT DISTINCT LastName FROM eoi";
-                            $result = mysqli_query($conn, $query);
-
-                            if ($result && mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value=\"" . htmlspecialchars($row['LastName']) . "\">" . htmlspecialchars($row['LastName']) . "</option>";
-                                }
-                            } else {
-                                echo "<option value=\"\">No last names available</option>";
-                            }
-                            ?>
-                        </select>
-                    </label>
+                    <label>First Name: <input type="text" name="FirstName" placeholder="Enter First Name"></label>
+                    <label>Last Name: <input type="text" name="LastName" placeholder="Enter Last Name"></label>
                     <button name="action" value="list_by_name">List EOIs by Name</button>
                 </form>
 
                 <hr>
 
                 <form method="post">
-                    <label>EOI ID:
-                        <select name="eoi_id" required>
-                            <option value="">Select EOI ID</option>
-                            <?php
-                            // Fetch distinct EOI IDs from the database
-                            $query = "SELECT DISTINCT EOInumber FROM eoi";
-                            $result = mysqli_query($conn, $query);
-
-                            if ($result && mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value=\"" . htmlspecialchars($row['EOInumber']) . "\">" . htmlspecialchars($row['EOInumber']) . "</option>";
-                                }
-                            } else {
-                                echo "<option value=\"\">No EOI IDs available</option>";
-                            }
-                            ?>
+                    <label>EOI ID: <input type="number" name="eoi_id" placeholder="Enter EOI ID" required></label>
+                    <label>Status:
+                        <select name="status" required>
+                            <option value="">Select Status</option>
+                            <option value="New">New</option>
+                            <option value="Current">Current</option>
+                            <option value="Final">Final</option>
                         </select>
                     </label>
-                    <label>Status: <input type="text" name="status" required></label>
                     <button name="action" value="update_status">Update Status</button>
                 </form>
             </div>
