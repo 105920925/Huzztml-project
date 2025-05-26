@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
-$user = "your_db_username";
-$pass = "your_db_password";
+$user = "root";
+$pass = "";
 $dbname = "jobs";
 
 $conn = new mysqli($host, $user, $pass, $dbname);

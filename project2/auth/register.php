@@ -4,7 +4,12 @@ $errors = [];
 $success = false;
 
 // Database connection
-require_once("../db/db_connect.php"); // Assumes you have a db_connect.php with $conn
+require_once("../db/settings.php"); // Loads $host, $user, $pass, $dbname
+
+$conn = new mysqli($host, $user, $pass, $dbname);
+if ($conn->connect_error) {
+    die("Database connection failed: " . $conn->connect_error);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');

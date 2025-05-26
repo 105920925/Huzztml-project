@@ -1,6 +1,11 @@
 <?php
 session_start();
-require_once("../db/db_connect.php"); // Assumes you have a db_connect.php with $conn
+require_once("../db/settings.php"); // Loads $host, $user, $pass, $dbname
+
+$conn = new mysqli($host, $user, $pass, $dbname);
+if ($conn->connect_error) {
+    die("Database connection failed: " . $conn->connect_error);
+}
 
 $errors = [];
 $locked = false;
