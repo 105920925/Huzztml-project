@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$locked) {
 <html>
 <head>
     <title>Manager Login</title>
-    <link rel="stylesheet" href="styles/loginstyles.css">
+    <link rel="stylesheet" href="../styles/loginstyles.css">
 </head>
 <body>
     <div class="login-container">

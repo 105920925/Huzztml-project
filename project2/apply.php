@@ -154,9 +154,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<?php include("inclusions/header.inc"); ?>
+<?php include("includes/header.inc"); ?>
 <link rel="stylesheet" href="styles/applystyle.css">
-<?php include("inclusions/menu.inc"); ?>
+<?php include("includes/menu.inc"); ?>
 
 <main>
     <div>
@@ -272,4 +272,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </main>
 
-<?php include("inclusions/footer.inc"); ?>
+<?php include("includes/footer.inc"); ?>
