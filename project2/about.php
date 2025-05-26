@@ -16,7 +16,7 @@
               <ul>
                 <li>Hayyan <span class="student-id">105931299</span></li>
                 <li>Noah <span class="student-id">105920925</span></li>
-                <li>Mujtaba <span class="student-id">105927968</span></li>
+                <li>Mujtaba <span class="student-id">105920938</span></li>
                 <li>Zan <span class="student-id">105927968</span></li>
               </ul>
             </li>
