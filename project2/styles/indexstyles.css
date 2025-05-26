@@ -93,6 +93,37 @@ nav a:hover {
     text-decoration: underline;
 }
 
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    background: #f8f8f8;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    display: block;
+    padding: 14px 20px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background: #0077cc;
+    color: #fff;
+    border-radius: 4px;
+}
+
 /* Section styles */
 section {
     padding: 20px;

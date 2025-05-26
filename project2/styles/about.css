@@ -18,39 +18,6 @@ body {
     color: #222;
 }
 
-/* === Header & Navigation === */
-header {
-    background-color: #005b99;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-header h1 {
-    margin-bottom: 10px;
-}
-
-nav ul {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    list-style: none;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 10px;
-}
-
-nav a:hover,
-nav a.active {
-    background-color: #0073e6;
-    border-radius: 4px;
-}
-
 /* === Main Layout === */
 main {
     max-width: 960px;
@@ -157,11 +124,6 @@ footer a:hover {
 
 /* === Responsive Layout === */
 @media screen and (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
     figure {
         float: none;
         width: 100%;
