@@ -41,10 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // List by name
-        elseif ($action === "list_by_name" && (!empty($_POST["first_name"]) || !empty($_POST["last_name"]))) {
-            $fname = $_POST["first_name"];
-            $lname = $_POST["last_name"];
-            $sql = "SELECT * FROM eoi WHERE first_name LIKE ? OR last_name LIKE ?";
+        elseif ($action === "list_by_name" && (!empty($_POST["FirstName"]) || !empty($_POST["LastName"]))) {
+            $fname = $_POST["FirstName"];
+            $lname = $_POST["LastName"];
+            $sql = "SELECT * FROM eoi WHERE FirstName LIKE ? OR LastName LIKE ?";
             $stmt = $conn->prepare($sql);
             $fname = "%$fname%";
             $lname = "%$lname%";
